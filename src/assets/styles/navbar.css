@@ -1,0 +1,55 @@
+/* NavBar styles */
+.navbar-container {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+  transition: all 0.3s ease; /* Smooth transition for logo */
+}
+
+.navbar-nav .nav-link {
+  color: #333333; /* Link color */
+  transition: color 0.3s ease; /* Smooth transition for link color */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff; /* Hover color */
+}
+
+/* Request Demo button */
+.navbar-btn {
+  margin-left: 15px; /* Adjust spacing between links and button */
+}
+
+/* Button hover animation */
+.navbar-btn:hover {
+  transform: translateY(-2px); /* Move button up slightly on hover */
+}
+
+/* Fixed navbar */
+.fixed-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure navbar appears above other content */
+  transition: all 0.3s ease; /* Smooth transition for fixed navbar */
+}
+
+/* Animation for fixed navbar */
+.fixed-top.navbar-scrolled {
+  background-color: #ffffff; /* Background color when scrolled */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow when scrolled */
+}
+
+.fixed-top.navbar-scrolled .navbar-brand img {
+  width: 150px; /* Decrease logo size when scrolled */
+}
+
+.fixed-top.navbar-scrolled .navbar-nav .nav-link {
+  color: #333333; /* Link color when scrolled */
+}
+
+.fixed-top.navbar-scrolled .navbar-nav .nav-link:hover {
+  color: #007bff; /* Hover color when scrolled */
+}

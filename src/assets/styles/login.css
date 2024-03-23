@@ -1,0 +1,57 @@
+body{
+    background-image: url('../images/login_bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.login-container {
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 100px auto; /* Center the login container horizontally */
+    border: 1px solid #dee2e6;
+    min-height: 250px;
+    max-height: 350px;
+    backdrop-filter: blur(10px) brightness(0.7); /* Apply glassmorphism effect */
+  }
+  
+  .login-heading {
+    text-align: center;
+    color: white; /* Change text color for better contrast */
+  }
+  
+  .login-form {
+    display: grid;
+    gap: 10px;
+  }
+  
+  .form-group {
+    display: grid;
+    gap: 5px;
+  }
+  
+  label {
+    font-weight: bold;
+    color: white; /* Change label color for better contrast */
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Use transparent border for input */
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2); /* Add transparency to input background */
+    color: white; /* Change text color for better contrast */
+  }
+  
+  .login-button {
+    padding: 8px 16px;
+    background-color: rgba(0, 123, 255, 0.8); /* Use RGBA color with transparency */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .login-button:hover {
+    background-color: rgba(0, 123, 255, 1); /* Increase opacity on hover */
+  }
+  
