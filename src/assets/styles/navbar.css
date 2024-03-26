@@ -5,51 +5,49 @@
 }
 
 .navbar-brand img {
-  transition: all 0.3s ease; /* Smooth transition for logo */
+  transition: all 0.3s ease;
 }
 
 .navbar-nav .nav-link {
-  color: #333333; /* Link color */
-  transition: color 0.3s ease; /* Smooth transition for link color */
+  color: #333333; 
+  transition: color 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #007bff; /* Hover color */
+  color: #007bff;
 }
 
-/* Request Demo button */
 .navbar-btn {
-  margin-left: 15px; /* Adjust spacing between links and button */
+  margin-left: 15px;
+  margin: 10px;
 }
 
-/* Button hover animation */
 .navbar-btn:hover {
-  transform: translateY(-2px); /* Move button up slightly on hover */
+  transform: translateY(-2px);
 }
 
-/* Fixed navbar */
 .fixed-top {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000; /* Ensure navbar appears above other content */
-  transition: all 0.3s ease; /* Smooth transition for fixed navbar */
+  z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 /* Animation for fixed navbar */
 .fixed-top.navbar-scrolled {
-  background-color: #ffffff; /* Background color when scrolled */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow when scrolled */
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .fixed-top.navbar-scrolled .navbar-brand img {
-  width: 150px; /* Decrease logo size when scrolled */
+  width: 150px;
 }
 
 .fixed-top.navbar-scrolled .navbar-nav .nav-link {
-  color: #333333; /* Link color when scrolled */
+  color: #333333;
 }
 
 .fixed-top.navbar-scrolled .navbar-nav .nav-link:hover {
-  color: #007bff; /* Hover color when scrolled */
+  color: #007bff;
 }

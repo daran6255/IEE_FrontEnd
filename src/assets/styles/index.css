@@ -1,5 +1,12 @@
 @import "footer.css";
-@import "heading.css";
 @import "layout.css";
 @import "navbar.css";
 @import "login.css";
+@import "button.css";
+@import "logo.css";
+@import "banner.css";
+@import "productoverview.css";
+@import "sponcer.css";
+@import "timeline.css";
+@import "pricing.css";
+@import "testimonials.css";

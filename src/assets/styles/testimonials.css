@@ -1,0 +1,29 @@
+.testimonials-container {
+    padding: 50px 0;
+}
+
+.testimonials-heading {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+}
+
+.marquee .testimonial-card {
+    display: inline-block;
+    margin-right: 20px;
+    animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

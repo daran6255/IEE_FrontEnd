@@ -1,22 +1,25 @@
 import React from 'react';
 import { Navbar, Nav, Image, Container, Button } from 'react-bootstrap';
-import logo from '../../assets/images/WVI.png';
+import LoginButton from '../../components/login-button/login';
+import SignupButton from '../../components/login-button/signup';
+import logo from '../../assets/images/WVI-Logo.png';
 
 
 const NavBarComponent = () => {
   return (
-    <Navbar bg="light" expand="lg" className="navbar-container">
-      <Container fluid>
-        <Navbar.Brand href="#home">
-          <Image src={logo} alt="Logo" width="200" height="40" />
-        </Navbar.Brand>
+    <Navbar bg="transperent" expand="lg">
+      <Container>
+        <Navbar.Brand href="#">
+          <Image className="LogoImage" src={logo} alt="Logo" />WinVinaya InfoSystems</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-          <Nav>
-            <Nav.Link href="#services">Services</Nav.Link>
-            <Nav.Link href="#about">About Us</Nav.Link>
-            <Nav.Link href="#contact">Contact Us</Nav.Link>
-            <Button variant="primary" href="#demo">Request Demo</Button>
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link href="#">Market</Nav.Link>
+            <Nav.Link href="#">Pricing</Nav.Link>
+            <Nav.Link href="#">Community</Nav.Link>
+            <Nav.Link href="#">Download</Nav.Link>
+            <LoginButton />
+            <SignupButton />
           </Nav>
         </Navbar.Collapse>
       </Container>

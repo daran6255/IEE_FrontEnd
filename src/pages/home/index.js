@@ -1,21 +1,33 @@
-import React, { useState } from 'react'; // Import React and useState
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import React from 'react';
 import NavBarComponent from '../../layouts/navbar';
-import Heading from '../../layouts/heading';
-import FooterComponent from '../../layouts/footer';
+import Header from '../../layouts/header';
+import About from '../../layouts/about';
+import Timeline from '../../layouts/timeline';
+import Pricing from '../../layouts/pricing';
+import Sponsor from '../../layouts/sponcers';
+import Testimonials from '../../layouts/testimonials';
+import Footer from '../../layouts/footer';
 
-const HomePage = () => {
-
+function App() {
   return (
-    <>
+    <div className="App">
       <NavBarComponent />
-      <Heading />
-      <Container fluid>
-        <h1>Home page</h1>
-      </Container>
-      <FooterComponent />
-    </>
-  );
-};
+      <Header />
 
-export default HomePage;
+      <About />
+      <Timeline />
+      <Sponsor />
+      <Pricing />
+      <Testimonials />
+      <Footer />
+
+
+
+
+
+    </div>
+  );
+}
+
+export default App;
+

@@ -1,0 +1,22 @@
+.static-banner-container {
+    margin: 50px;
+  }
+  
+  .banner-text {
+    padding: 20px;
+  }
+  
+  .banner-text h1 {
+    font-size: 2.5rem;
+  }
+  
+  .banner-text p {
+    font-size: 1.2rem;
+  }
+  
+  .img-fluid {
+    max-width: 100%; 
+    height: auto; 
+    margin-left: 50px;
+  }
+  
