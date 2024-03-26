@@ -15,10 +15,9 @@ const authProtectedRoutes = [
 ]
 
 const publicRoutes = [
-    { path: '/login', component: <Login /> },
     { path: '/home', component: <HomePage /> },
+    { path: '/login', component: <Login /> },
     { path: '/signup', component: <Signup /> },
-    { path: '/dashboard', component: <DashboardPage /> },
 
 ]
 

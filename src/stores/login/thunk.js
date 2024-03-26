@@ -1,6 +1,5 @@
 import {
-    getLogin,
-    getLoggedInUser
+    getLogin
 } from '../../helpers/backend_helper';
 
 import {
@@ -8,7 +7,7 @@ import {
     apiError,
 } from './reducer';
 
-export const loginUser = (user: any, history: any) => async (dispatch: any) => {
+export const loginUser = (user, history) => async (dispatch) => {
     try {
         let response = await getLogin({
             email: user.email,
@@ -17,12 +16,14 @@ export const loginUser = (user: any, history: any) => async (dispatch: any) => {
 
         if (response) {
             dispatch(loginSuccess(response));
+            sessionStorage.setItem('userAuth', JSON.stringify(response));
             history('/dashboard');
         }
         else {
             dispatch(apiError('Login Failed'));
         }
-    } catch (error: any) {
+    } catch (error) {
         dispatch(apiError(error));
     }
 };
+

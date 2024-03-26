@@ -24,7 +24,7 @@ const AuthProtected = (props) => {
     if (!userProfile && loading) {
         return (
             <React.Fragment>
-                <Navigate to={{ pathname: '/login' }} />
+                <Navigate to={{ pathname: '/home' }} />
             </React.Fragment>
         );
     }

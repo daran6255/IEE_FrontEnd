@@ -47,7 +47,7 @@ const LoginComponent = () => {
                         {isSubmitted && !password && <div className="invalid-feedback">Password is required</div>}
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" block disabled={isSubmitted}>
+                    <Button variant="primary" type="submit" disabled={isSubmitted}>
                         {isSubmitted ? 'Logging in...' : 'Login'}
                     </Button>
                 </Form>

@@ -1,7 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, Nav, Image, Container, Button } from 'react-bootstrap';
-import LoginButton from '../../components/login-button/login';
-import SignupButton from '../../components/login-button/signup';
 import logo from '../../assets/images/WVI-Logo.png';
 
 
@@ -18,12 +17,20 @@ const NavBarComponent = () => {
             <Nav.Link href="#">Pricing</Nav.Link>
             <Nav.Link href="#">Community</Nav.Link>
             <Nav.Link href="#">Download</Nav.Link>
-            <LoginButton />
-            <SignupButton />
+            <Link to="/login">
+              <Button className="custom-button" variant="primary" >
+                Login
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button className="custom-button" variant="success">
+                Sign up
+              </Button>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 };
 

@@ -7,33 +7,31 @@ import { authProtectedRoutes, publicRoutes } from './allroutes';
 
 const Index = () => {
     return (
-        <Router> {/* Wrap everything in Router component */}
-            <Routes>
-                <Route>
-                    {publicRoutes.map((route, idx) => (
-                        <Route
-                            path={route.path}
-                            element={route.component}
-                            key={idx}
-                        />
-                    ))}
-                </Route>
+        <Routes>
+            <Route>
+                {publicRoutes.map((route, idx) => (
+                    <Route
+                        path={route.path}
+                        element={route.component}
+                        key={idx}
+                    />
+                ))}
+            </Route>
 
-                <Route>
-                    {authProtectedRoutes.map((route, idx) => (
-                        <Route
-                            path={route.path}
-                            element={
-                                <AuthProtected>
-                                    {route.component}
-                                </AuthProtected>
-                            }
-                            key={idx}
-                        />
-                    ))}
-                </Route>
-            </Routes>
-        </Router>
+            <Route>
+                {authProtectedRoutes.map((route, idx) => (
+                    <Route
+                        path={route.path}
+                        element={
+                            <AuthProtected>
+                                {route.component}
+                            </AuthProtected>
+                        }
+                        key={idx}
+                    />
+                ))}
+            </Route>
+        </Routes>
     );
 };
 

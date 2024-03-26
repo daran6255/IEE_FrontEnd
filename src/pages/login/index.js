@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { Container, Form, Image, Button } from 'react-bootstrap';
 import { FiUser, FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
-import logo from '../../assets/images/WVI-Logo.png';
-import backgroundImage from '../../assets/images/login-bg-2.jpg';
+import { useSelector, useDispatch } from 'react-redux';
 
-const LoginComponent = () => {
+import withRouter from '../../components/common/withRouter';
+import { loginUser } from '../../stores/thunk';
+
+
+import logo from '../../assets/images/WVI-Logo.png';
+
+const LoginComponent = (props) => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -12,14 +19,7 @@ const LoginComponent = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Add your login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
-    setIsSubmitted(true);
-    // Simulate login process
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 2000);
+    dispatch(loginUser({ email, password }, props.router.navigate));
   };
 
   return (
@@ -71,7 +71,6 @@ const LoginComponent = () => {
             <Button
               variant="primary"
               type="submit"
-              block
               disabled={isSubmitted}
               className="login-button"
               style={{ margin: '20px', marginLeft: '100px' }}
@@ -85,4 +84,4 @@ const LoginComponent = () => {
   );
 };
 
-export default LoginComponent;
+export default withRouter(LoginComponent);

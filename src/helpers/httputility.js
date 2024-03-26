@@ -6,8 +6,8 @@ axios.defaults.baseURL = config.IEE_BACKEND_URL;
 // content type
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-const authUser = sessionStorage.getItem('authUser');
-const token = JSON.parse(authUser) ? JSON.parse(authUser).accessToken : null;
+const userAuth = sessionStorage.getItem('userAuth');
+const token = JSON.parse(userAuth) ? JSON.parse(userAuth).accessToken : null;
 if (token) axios.defaults.headers.common['Authorization'] = token;
 
 axios.interceptors.response.use(
@@ -59,7 +59,7 @@ class HttpUtility {
 
         return response;
     };
- 
+
     create = (url, data) => {
         return axios.post(url, data);
     };
@@ -71,17 +71,17 @@ class HttpUtility {
     put = (url, data) => {
         return axios.put(url, data);
     };
-   
+
     delete = (
         url,
         axiosConfig
-    )=> {
+    ) => {
         return axios.delete(url, { ...axiosConfig });
     };
 }
 
 const getLoggedinUser = () => {
-    const user = sessionStorage.getItem('authUser');
+    const user = sessionStorage.getItem('userAuth');
     if (!user) {
         return null;
     } else {
