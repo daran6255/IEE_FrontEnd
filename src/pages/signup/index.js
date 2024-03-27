@@ -149,7 +149,6 @@ const SignUpComponent = () => {
                         <Button
                             variant="primary"
                             type="submit"
-                            block
                             disabled={isSubmitted}
                             className="signup-button"
                             style={{ margin: '20px', marginLeft: '250px' }}

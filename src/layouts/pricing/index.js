@@ -20,7 +20,7 @@ const PricingComponent = () => {
                                 <li className="feature">Feature 2</li>
                                 <li className="feature">Feature 3</li>
                             </ul>
-                            <Button variant="primary" block>Choose Plan</Button>
+                            <Button variant="primary" >Choose Plan</Button>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -39,7 +39,7 @@ const PricingComponent = () => {
                                 <li className="feature">Feature 3</li>
                                 <li className="feature">Feature 4</li>
                             </ul>
-                            <Button variant="primary" block>Choose Plan</Button>
+                            <Button variant="primary">Choose Plan</Button>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -59,7 +59,7 @@ const PricingComponent = () => {
                                 <li className="feature">Feature 4</li>
                                 <li className="feature">Feature 5</li>
                             </ul>
-                            <Button variant="primary" block>Choose Plan</Button>
+                            <Button variant="primary" >Choose Plan</Button>
                         </Card.Body>
                     </Card>
                 </Col>
