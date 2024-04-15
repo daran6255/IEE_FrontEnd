@@ -28,7 +28,7 @@ const DashBoardNavbar = () => {
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="#">My Profile</Dropdown.Item>
-                                    <Dropdown.Item href="#">Credits Usage</Dropdown.Item>
+                                    <Dropdown.Item href="#">Buy Credits</Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item>
                                         <Button className="custom-button" variant="primary">

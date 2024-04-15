@@ -20,6 +20,7 @@ const publicRoutes = [
     { path: '/login', component: <Login /> },
     { path: '/signup', component: <Signup /> },
     { path: '/dashboard', component: <DashboardPage /> },
+    { path: '/userprofile', component: <UserProfile /> },
 
 ]
 

@@ -5,7 +5,7 @@ import Avatar from 'react-avatar';
 
 const ProfileCard = ({ name, company, email, phone }) => {
     return (
-        <Card className="profile-card" style={{ maxWidth: '300px', marginLeft: '10px' }}>
+        <Card className="profile-card" style={{ margin: '10px' }}>
             <Card.Header className="text-center rounded-top bg-transparent border-0">
                 <Avatar name={name} round size="64" />
             </Card.Header>
