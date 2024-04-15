@@ -15,14 +15,12 @@ const DashBoardNavbar = () => {
                         <span style={{ marginBottom: '15px', marginLeft: '10px' }}>WinVinaya InfoSystems</span>
                     </div>
                 </Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <Nav.Item className="credits-container">
                             <Nav.Link href="#">
-                                <span className="me-2">Credits</span>
-                                <GiCoins className="me-2" />
-                                <span>100</span> {/* Replace with dynamic credits value */}
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
@@ -31,9 +29,6 @@ const DashBoardNavbar = () => {
                                     <FiUser size={24} className="user-icon" />
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="#">My Profile</Dropdown.Item>
-                                    <Dropdown.Item href="#">Buy Credits</Dropdown.Item>
-                                    <Dropdown.Divider />
                                     <Dropdown.Item>
                                         <Button className="custom-button" variant="primary">
                                             Logout

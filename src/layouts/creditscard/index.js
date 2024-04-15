@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Row, Col, Button, Table } from 'react-bootstrap';
 import { PieChart } from 'react-minimal-pie-chart';
 
 const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 40, totalInvoiceProcessed = 100, invoiceCanBeProcessed = 60 }) => {
@@ -8,90 +8,117 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
 
     // Data for the pie chart
     const usageData = [
-        { title: 'Invoice Processed', value: totalInvoiceProcessed, color: '#2d733b' }, // Green color for total invoice processed
-        { title: 'Invoice Can be Processed', value: invoiceCanBeProcessed, color: '#1671a6' }, // Blue color for invoice can be processed
-        { title: 'Available', value: availableCredits, color: '#E38627' }, // Green color for available credits
-        { title: 'Used', value: usedCredits, color: '#6A2135' }, // Red color for used credits
+        { title: 'Total credits', value: totalInvoiceProcessed, color: '#2d733b' },
+        { title: 'Available credits', value: invoiceCanBeProcessed, color: '#1671a6' },
+        { title: 'Used credits', value: usedCredits, color: '#9e335c' },
+        { title: 'Extract Invoice', value: availableCredits, color: '#E38627' },
+        { title: 'Extracted Invoice', value: availableCredits, color: '#6A2135' },
     ];
+    const data = {
+        "header": ['SLNO', 'DATE', 'credits purchased', 'Available', 'Amount'],
+        "row1": ['1', '02-06-23', '500', '100', '300.00'],
+        "row2": ['2', '02-07-23', '5000', '100', '300.00'],
+        "row3": ['3', '12-08-23', '300', '100', '300.00'],
+        "row4": ['4', '25-09-23', '50', '100', '600.00']
+    };
 
     return (
-        <Card className="credits-card" style={{ width: '100%', margin: '10px' }}>
+        <Card className="credits-card" style={{ margin: '10px', width: '80%' }}> {/* Adjusted width here */}
             <Card.Body>
-                <div className="row">
+                <Row>
                     {/* Column for Total Credits, Available Credits, and Used Credits */}
-                    <div className="col">
-                        <div className="row">
-                            {/* Total Credits */}
-                            <Card className="credit-info" style={{ width: '100%', margin: '10px', backgroundColor: '#2d733b', color: 'white' }}>
-                                <Card.Body>
-                                    <Card.Title style={{ fontSize: '15px' }}>Total Credits</Card.Title>
-                                    <Card.Text style={{ fontSize: '30px', fontWeight: 'bold' }}>{totalCredits}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                        <div className="row">
-                            {/* Available Credits */}
-                            <Card className="credit-info" style={{ width: '100%', margin: '10px', backgroundColor: '#1671a6', color: 'white' }}>
-                                <Card.Body>
-                                    <Card.Title style={{ fontSize: '15px' }}>Available Credits</Card.Title>
-                                    <Card.Text style={{ fontSize: '30px', fontWeight: 'bold' }}>{availableCredits}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                        <div className="row">
+                    <Col xs={12} md={4}>
+                        {/* Available Credits */}
+                        <Card className="credit-info" style={{ backgroundColor: '#1671a6', color: 'white', marginBottom: '10px' }}>
+                            <Card.Body>
+                                <Card.Title>Available Credits</Card.Title>
+                                <Card.Text>{availableCredits}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col xs={12} md={4}>
+                        {/* Total Credits */}
+                        <Card className="credit-info" style={{ backgroundColor: '#2d733b', color: 'white', marginBottom: '10px' }}>
+                            <Card.Body>
+                                <Card.Title>Total Credits</Card.Title>
+                                <Card.Text>{totalCredits}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col xs={12} md={4}>
+                        {/* Used Credits & Buy Credits */}
+                        <div className="d-flex flex-column justify-content-between h-100">
                             {/* Used Credits */}
-                            <Card className="credit-info" style={{ width: '100%', margin: '10px', backgroundColor: '#9e335c', color: 'white' }}>
+                            <Card className="credit-info" style={{ backgroundColor: '#9e335c', color: 'white', marginBottom: '10px' }}>
                                 <Card.Body>
-                                    <Card.Title style={{ fontSize: '15px' }}>Used Credits</Card.Title>
-                                    <Card.Text style={{ fontSize: '30px', fontWeight: 'bold' }}>{usedCredits}</Card.Text>
+                                    <Card.Title>Used Credits</Card.Title>
+                                    <Card.Text>{usedCredits}</Card.Text>
                                 </Card.Body>
                             </Card>
+                            {/* Buy Credits Button */}
+                            <Button variant="outline-primary" style={{ marginTop: 'auto' }}>Buy Credits</Button>
                         </div>
-                    </div>
-                    {/* Column for the Pie Chart */}
-                    <div className="col">
-                        <div className="row">
-                            {/* Pie chart to visualize credit usage */}
-                            <PieChart
-                                data={usageData}
-                                label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
-                                labelStyle={(index) => ({
-                                    fontSize: '5px',
-                                    fontFamily: 'sans-serif',
-                                    color: 'white',
-                                })}
-                                style={{ width: '100%', height: '300px', margin: '10px' }} // Adjust the height here
-                            />
+                    </Col>
+                </Row>
+                <Row>
+                    {/* Column for Total Credits, Available Credits, and Used Credits */}
+                    <Col xs={12} md={4}>
+                        {/* Available Credits */}
+                        <Card className="credit-info" style={{ backgroundColor: '#E38627', color: 'white', marginBottom: '10px' }}>
+                            <Card.Body>
+                                <Card.Title>Extract Invoice</Card.Title>
+                                <Card.Text>{availableCredits}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col xs={12} md={4}>
+                        {/* Total Credits */}
+                        <Card className="credit-info" style={{ backgroundColor: '#6A2135', color: 'white', marginBottom: '10px' }}>
+                            <Card.Body>
+                                <Card.Title>Extracted Invoice</Card.Title>
+                                <Card.Text>{totalCredits}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+                {/* Column for the Pie Chart */}
+                <Row>
+                    <Col xs={12} md={4}>
+                        {/* Pie chart to visualize credit usage */}
+                        <PieChart
+                            data={usageData}
+                            label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+                            labelStyle={(index) => ({
+                                fontSize: '7px',
+                                fontFamily: 'sans-serif',
+                                color: 'white',
+                            })}
+                            style={{ margin: '0 auto', width: '100%', height: '200px' }}
+                        />
+                    </Col>
+                    <Col xs={12} md={8}>
+                        <div style={{ overflowX: 'auto' }}>
+                            <Table striped bordered hover responsive>
+                                <thead>
+                                    <tr>
+                                        {data.header.map((headerItem, index) => (
+                                            <th key={index}>{headerItem}</th>
+                                        ))}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Object.keys(data).filter(key => key !== 'header').map((rowKey, rowIndex) => (
+                                        <tr key={rowIndex}>
+                                            {data[rowKey].map((rowData, cellIndex) => (
+                                                <td key={cellIndex}>{rowData}</td>
+                                            ))}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
                         </div>
-                    </div>
-                    <div className="col">
-                        <div className="row">
-                            {/* Column for Total Invoice Processed and Invoice Can be Processed */}
-                            <div className="col">
-                                <div className="row">
-                                    {/* Total Invoice Processed */}
-                                    <Card className="credit-info" style={{ width: '80%', margin: '10px', backgroundColor: '#2d733b', color: 'white' }}>
-                                        <Card.Body>
-                                            <Card.Title style={{ fontSize: '15px' }}>Total Invoice Processed</Card.Title>
-                                            <Card.Text style={{ fontSize: '30px', fontWeight: 'bold' }}>{totalInvoiceProcessed}</Card.Text>
-                                        </Card.Body>
-                                    </Card>
-                                </div>
-                                <div className="row">
-                                    {/* Invoice Can be Processed */}
-                                    <Card className="credit-info" style={{ width: '80%', margin: '10px', backgroundColor: '#1671a6', color: 'white' }}>
-                                        <Card.Body>
-                                            <Card.Title style={{ fontSize: '15px' }}>Invoice Can be Processed</Card.Title>
-                                            <Card.Text style={{ fontSize: '30px', fontWeight: 'bold' }}>{invoiceCanBeProcessed}</Card.Text>
-                                        </Card.Body>
-                                    </Card>
-                                </div>
-                            </div>
-                            {/* Column for the Pie Chart */}
-
-                        </div>
-                    </div>
-                </div>
+                    </Col>
+                </Row>
             </Card.Body>
         </Card>
     );

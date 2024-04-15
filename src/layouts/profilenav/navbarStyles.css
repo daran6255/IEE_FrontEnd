@@ -1,0 +1,29 @@
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+.credits-container {
+  display: flex;
+  align-items: center;
+}
+
+.userprofile {
+  background-color: transparent !important;
+  border: none;
+}
+
+.dropdown-menu {
+  min-width: 150px;
+}
+
+.dropdown-item {
+  font-weight: bold;
+}
+
+.dropdown-divider {
+  margin: 0.5rem 0;
+}
+
+.user-icon {
+  color: black;
+}

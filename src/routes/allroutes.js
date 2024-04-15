@@ -5,7 +5,7 @@ import HomePage from '../pages/home';
 import DashboardPage from '../pages/dashboard';
 import Login from "../pages/login";
 import Signup from "../pages/signup";
-import UserProfile from "../pages/userprofile";
+import UserProfile from "../pages/myprofile";
 
 const authProtectedRoutes = [
     { path: '/dashboard', component: <DashboardPage /> },
@@ -20,7 +20,7 @@ const publicRoutes = [
     { path: '/login', component: <Login /> },
     { path: '/signup', component: <Signup /> },
     { path: '/dashboard', component: <DashboardPage /> },
-    { path: '/userprofile', component: <UserProfile /> },
+    { path: '/my-profile', component: <UserProfile /> },
 
 ]
 

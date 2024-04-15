@@ -8,8 +8,12 @@ const NavBarComponent = () => {
   return (
     <Navbar bg="transperent" expand="lg">
       <Container>
-        <Navbar.Brand href="#">
-          <Image className="LogoImage" src={logo} alt="Logo" />WinVinaya InfoSystems</Navbar.Brand>
+        <Navbar.Brand href="#" style={{ display: 'flex', alignItems: 'flex-end' }}>
+          <Image className="LogoImage" src={logo} alt="Logo" style={{ marginRight: '10px' }} />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{ marginBottom: '15px', marginLeft: '10px' }}>WinVinaya InfoSystems</span>
+          </div>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
