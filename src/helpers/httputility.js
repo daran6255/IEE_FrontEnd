@@ -60,8 +60,8 @@ class HttpUtility {
         return response;
     };
 
-    create = (url, data) => {
-        return axios.post(url, data);
+    post = (url, data, axiosConfig) => {
+        return axios.post(url, data, { ...axiosConfig });
     };
 
     update = (url, data) => {

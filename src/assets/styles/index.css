@@ -10,3 +10,8 @@
 @import "timeline.css";
 @import "pricing.css";
 @import "testimonials.css";
+@import "dashboard.css";
+
+
+
+@import 'react-toastify/dist/ReactToastify.css';

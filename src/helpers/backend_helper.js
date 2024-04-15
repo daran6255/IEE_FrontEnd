@@ -15,3 +15,6 @@ export const isUserAuthenticated = () => {
 // APIs
 export const getLogin = (data) =>
     http.post('/login', data);
+
+export const processInvoice = (data) =>
+    http.post('/process_invoice', data, { headers: { 'Content-Type': 'multipart/form-data' } });
