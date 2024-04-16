@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
-import { Container, Row, Col, Form, Button, Carousel, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Carousel, Spinner, Table } from 'react-bootstrap';
 
 import { processInvoice } from '../../stores/thunk';
 
@@ -19,14 +19,14 @@ const OutputPreview = () => {
     const { entities, loading } = useSelector(entitiesData);
 
     const [selectedFiles, setSelectedFiles] = useState([]);
-    const [selectedIndex, setSelectedIndex] = useState(1);
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
     const handleFileChange = (event) => {
         setSelectedFiles(event.target.files);
     };
 
     const handleSelect = (selectedIndex, e) => {
-        setSelectedIndex(selectedIndex + 1);
+        setSelectedIndex(selectedIndex);
     };
 
     const handleUpload = async () => {
@@ -39,12 +39,67 @@ const OutputPreview = () => {
         dispatch(processInvoice(formData));
     };
 
-    const data = {
-        "header": ['SLNO', 'DATE', 'VENDOR', 'CUSTOMER', 'CON NO', 'CONSIGNEE', 'DESTINATION', 'WEIGHT', 'AMOUNT'],
-        "row1": ['1', '02-06-23', 'ABC', 'WVF', '3516505', 'KARNATAKA', 'Madurai', '0,650', '30.00'],
-        "row2": ['2', '02-06-23', 'ABC', 'WVF', '3516506', 'KARNATAKA', 'Madurai', '0.320', '30.00'],
-        "row3": ['3', '02-06-23', 'ABC', 'WVF', '3516507', 'KARNATAKA', 'Madurai', '0.360', '30.00'],
-        "row4": ['4', '05-06-23', 'ABC', 'WVF', '3516508', 'KARNATAKA', 'Madurai', '500', '60,00']
+    const isEntitiesAvailable = selectedIndex < entities.length;
+
+    const EntitiesTable = (index) => {
+        if (!isEntitiesAvailable || !entities[index].entities) {
+            return <p>No entities detected</p>;
+        }
+
+        const entitiesObj = entities[index].entities;
+
+        return (
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Entity</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Object.entries(entitiesObj).map(([key, values]) => {
+                        if (key !== 'items') {
+                            return (
+                                <tr key={key}>
+                                    <td>{key}</td>
+                                    <td>{values.map((value, index) => <div key={index}>{value}</div>)}</td>
+                                </tr>
+                            );
+                        }
+                        return null;
+                    })}
+                </tbody>
+            </Table>
+        );
+    };
+
+    const ItemTable = (index) => {
+        if (!isEntitiesAvailable || !entities[index].entities || !entities[index].entities.items) {
+            return <p>No items detected</p>;
+        }
+
+        const [header, ...rows] = entities[index].entities.items;
+
+        return (
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        {header.map((head, index) => (
+                            <th key={index}>{head}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows.map((row, rowIndex) => (
+                        <tr key={rowIndex}>
+                            {row.map((cell, cellIndex) => (
+                                <td key={cellIndex}>{cell}</td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
+        );
     };
 
     return (
@@ -70,8 +125,8 @@ const OutputPreview = () => {
                         {selectedFiles.length > 0 ?
                             <>
                                 <Row className="justify-content-center text-center">
-                                    <Col>{selectedFiles[selectedIndex - 1].name}</Col>
-                                    <Col>{selectedIndex} of {selectedFiles.length}</Col>
+                                    <Col>{isEntitiesAvailable && selectedFiles[selectedIndex].name}</Col>
+                                    <Col>{selectedIndex + 1} of {selectedFiles.length}</Col>
                                 </Row>
                                 <Row>
                                     <Carousel controls={true} interval={null} onSelect={handleSelect}>
@@ -94,31 +149,21 @@ const OutputPreview = () => {
                         <Row>
                             <Col className="box-cell-JsonPreview">
                                 {loading ?
-                                    <Spinner animation="border" /> :
-                                    <div><pre>{JSON.stringify(entities, null, 2)}</pre></div>
+                                    <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                                    :
+                                    isEntitiesAvailable ?
+                                        <div>{EntitiesTable(selectedIndex)}</div> :
+                                        'Null'
                                 }
                             </Col>
                         </Row>
                         <Row>
+
                             <Col className="box-cell-tablePreview">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            {data.header.map((headerItem, index) => (
-                                                <th key={index}>{headerItem}</th>
-                                            ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {Object.keys(data).filter(key => key !== 'header').map((rowKey, rowIndex) => (
-                                            <tr key={rowIndex}>
-                                                {data[rowKey].map((rowData, cellIndex) => (
-                                                    <td key={cellIndex}>{rowData}</td>
-                                                ))}
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                                {loading ?
+                                    <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div> :
+                                    <div>{ItemTable(selectedIndex)}</div>
+                                }
                             </Col>
                         </Row>
                     </Col>
