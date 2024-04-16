@@ -75,7 +75,8 @@ const OutputPreview = () => {
     };
 
     const ItemTable = (index) => {
-        if (!isEntitiesAvailable || !entities[index].entities || !entities[index].entities.items) {
+        if (!isEntitiesAvailable || !entities[index].entities ||
+            !entities[index].entities.items || entities[index].entities.items.length <= 1) {
             return <p>No items detected</p>;
         }
 
