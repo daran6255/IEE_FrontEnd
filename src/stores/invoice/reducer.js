@@ -14,7 +14,13 @@ export const initialState = {
 const invoiceSlice = createSlice({
     name: 'Invoice',
     initialState,
-    reducers: {},
+    reducers: {
+        reset_invoice(state) {
+            state.requestId = '';
+            state.entities = [];
+            state.loading = false;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(processInvoice.pending, (state) => {
             state.loading = true;
@@ -36,5 +42,7 @@ const invoiceSlice = createSlice({
         });
     },
 });
+
+export const { reset_invoice } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;

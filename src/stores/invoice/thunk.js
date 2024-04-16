@@ -8,6 +8,8 @@ import {
     downloadJson as downloadJsonAPI,
 } from '../../helpers/backend_helper';
 
+import { reset_invoice } from './reducer';
+
 export const processInvoice = createAsyncThunk(
     'invoice/processInvoice',
     async (invoices) => {
@@ -53,3 +55,11 @@ export const downloadJson = (requestId) => async (dispatch) => {
         return error;
     }
 }
+
+export const resetInvoice = () => async (dispatch) => {
+    try {
+        dispatch(reset_invoice());
+    } catch (error) {
+        return error;
+    }
+};

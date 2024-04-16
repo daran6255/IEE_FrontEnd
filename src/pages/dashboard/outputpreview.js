@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Container, Row, Col, Form, Button, Carousel, Spinner, Table } from 'react-bootstrap';
 
-import { processInvoice, downloadExcel, downloadJson } from '../../stores/thunk';
+import { processInvoice, downloadExcel, downloadJson, resetInvoice } from '../../stores/thunk';
 
 const OutputPreview = () => {
     const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const OutputPreview = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const handleFileChange = (event) => {
+        dispatch(resetInvoice());
         setSelectedFiles(event.target.files);
     };
 
@@ -125,7 +126,7 @@ const OutputPreview = () => {
                 <Row>
                     <Row className="justify-content-center text-center">
                         <Col style={{ fontWeight: 'bold' }}>
-                            {`${isEntitiesAvailable && selectedFiles[selectedIndex].name} -  pages(${selectedIndex + 1} of ${selectedFiles.length})`}
+                            {isEntitiesAvailable ? `${selectedFiles[selectedIndex].name} -  pages(${selectedIndex + 1} of ${selectedFiles.length})` : null}
                         </Col>
                     </Row>
                     <Col className="box-cell-ImagePreview text-center">
