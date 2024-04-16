@@ -1,0 +1,39 @@
+.customer-review-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+  
+  .customer-review-content {
+    text-align: center;
+  }
+  
+  .quote-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #000000;
+  }
+  
+  .customer-review-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #000000;
+  }
+  
+  .star-rating {
+    margin-bottom: 10px;
+  }
+  
+  .star-icon {
+    font-size: 24px;
+    color: #ffd700; /* Star color */
+  }
+  
+  .customer-review-author {
+    font-size: 16px;
+    color: #000000;
+  }
+  

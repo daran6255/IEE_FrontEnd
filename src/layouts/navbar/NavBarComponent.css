@@ -1,0 +1,27 @@
+
+  .custom-button {
+    margin-left: 10px; /* Add margin between buttons */
+  }
+  
+  @media (max-width: 991.98px) {
+    /* Adjust styles for medium devices and below */
+    .navbar-custom {
+      background-color: rgba(0, 0, 0, 0.9); /* Darker background for smaller screens */
+      box-shadow: none; /* Remove shadow effect */
+    }
+  
+    .navbar-custom .navbar-brand {
+      margin-right: 0; /* Remove margin for the brand */
+    }
+  
+    .navbar-custom .nav-link {
+      margin-right: 10px; /* Add margin between nav links */
+    }
+  
+    .custom-button {
+      margin-left: 0; /* Remove margin for buttons */
+      margin-top: 10px; /* Add top margin for buttons */
+      width: 100%; /* Make buttons full width */
+    }
+  }
+  

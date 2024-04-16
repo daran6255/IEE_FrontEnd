@@ -1,0 +1,139 @@
+/* Styles for HomePage */
+.home-page-container {
+    padding-bottom: 50px;
+}
+
+.banner-section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.banner-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.banner-description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.banner-button {
+    font-size: 1.2rem;
+}
+
+.about-product-section,
+.pricing-section,
+.steps-section,
+.blogs-section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.section-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.section-description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.step-card {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+}
+
+.step-icon {
+    font-size: 2rem;
+    color: #007bff;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto 20px;
+}
+
+.step-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.step-description {
+    font-size: 1.2rem;
+}
+
+
+.section-heading {
+    color: #007bff;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.feature-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.feature-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.feature-description {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.customer-review {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.customer-review-image {
+    width: 150px;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.customer-review-text {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.customer-review-author {
+    font-size: 1.2rem;
+    font-style: italic;
+}

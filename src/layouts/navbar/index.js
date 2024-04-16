@@ -2,27 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Image, Container, Button } from 'react-bootstrap';
 import logo from '../../assets/images/WVI-Logo.png';
-
+import './NavBarComponent.css'; // Import custom styles for NavBarComponent
 
 const NavBarComponent = () => {
   return (
-    <Navbar bg="transperent" expand="lg">
+    <Navbar expand="lg" bg="transparent" className="navbar-custom">
       <Container>
-        <Navbar.Brand href="#" style={{ display: 'flex', alignItems: 'flex-end' }}>
+        <Navbar.Brand href="#" style={{ display: 'flex', alignItems: 'center' }}>
           <Image className="LogoImage" src={logo} alt="Logo" style={{ marginRight: '10px' }} />
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ marginBottom: '15px', marginLeft: '10px' }}>WinVinaya InfoSystems</span>
-          </div>
+          <span style={{ color: 'black' }}>WinVinaya InfoSystems</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link href="#">Market</Nav.Link>
-            <Nav.Link href="#">Pricing</Nav.Link>
-            <Nav.Link href="#">Community</Nav.Link>
-            <Nav.Link href="#">Download</Nav.Link>
+          <Nav className="ms-auto" >
+            <Nav.Link href="#" className="nav-link">Market</Nav.Link>
+            <Nav.Link href="#" className="nav-link">Pricing</Nav.Link>
+            <Nav.Link href="#" className="nav-link">Community</Nav.Link>
+            <Nav.Link href="#" className="nav-link">Download</Nav.Link>
             <Link to="/login">
-              <Button className="custom-button" variant="primary" >
+              <Button className="custom-button" variant="primary">
                 Login
               </Button>
             </Link>
@@ -34,7 +32,7 @@ const NavBarComponent = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar >
+    </Navbar>
   );
 };
 

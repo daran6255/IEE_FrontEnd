@@ -5,7 +5,7 @@ import { FiUser } from 'react-icons/fi';
 import logo from '../../assets/images/WVI-Logo.png';
 import './navbarStyles.css'; // Import navbar styles
 
-const DashBoardNavbar = () => {
+const DashBoardNavbar = ({ userName = 'Dharanidaran' }) => {
     return (
         <Navbar bg="transparent" expand="lg">
             <Container>
@@ -19,12 +19,9 @@ const DashBoardNavbar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
-                        <Nav.Item className="credits-container">
-                            <Nav.Link href="#">
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
+                        <Nav.Item className="user-profile">
                             <Dropdown align="end">
+                                <span style={{ color: 'black' }} className="user-name">{userName}</span>
                                 <Dropdown.Toggle className='userprofile' variant="link" id="dropdown-basic">
                                     <FiUser size={24} className="user-icon" />
                                 </Dropdown.Toggle>
