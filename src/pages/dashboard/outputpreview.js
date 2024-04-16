@@ -123,13 +123,14 @@ const OutputPreview = () => {
                     </Col>
                 </Row>
                 <Row>
+                    <Row className="justify-content-center text-center">
+                        <Col style={{ fontWeight: 'bold' }}>
+                            {`${isEntitiesAvailable && selectedFiles[selectedIndex].name} -  pages(${selectedIndex + 1} of ${selectedFiles.length})`}
+                        </Col>
+                    </Row>
                     <Col className="box-cell-ImagePreview text-center">
                         {selectedFiles.length > 0 ?
                             <>
-                                <Row className="justify-content-center text-center">
-                                    <Col>{isEntitiesAvailable && selectedFiles[selectedIndex].name}</Col>
-                                    <Col>{selectedIndex + 1} of {selectedFiles.length}</Col>
-                                </Row>
                                 <Row>
                                     <Carousel controls={true} interval={null} onSelect={handleSelect}>
                                         {Array.from(selectedFiles).map((file, index) => (
@@ -150,11 +151,14 @@ const OutputPreview = () => {
                     <Col>
                         <Row>
                             <Col className="box-cell-JsonPreview">
+                                <div style={{ margin: '20px' }}>
+                                    <h4>Invoice Entity</h4>
+                                </div>
                                 {loading ?
                                     <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
                                     :
                                     isEntitiesAvailable ?
-                                        <div>{EntitiesTable(selectedIndex)}</div> :
+                                        <div style={{ padding: '5px' }}>{EntitiesTable(selectedIndex)}</div> :
                                         'Null'
                                 }
                             </Col>
@@ -162,6 +166,10 @@ const OutputPreview = () => {
                         <Row>
 
                             <Col className="box-cell-tablePreview">
+                                <div style={{ margin: '20px' }}>
+                                    <h4>Item Table</h4>
+                                </div>
+
                                 {loading ?
                                     <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div> :
                                     <div>{ItemTable(selectedIndex)}</div>

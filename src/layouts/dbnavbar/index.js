@@ -5,7 +5,7 @@ import { FiUser } from 'react-icons/fi';
 import logo from '../../assets/images/WVI-Logo.png';
 import './navbarStyles.css'; // Import navbar styles
 
-const DashBoardNavbar = () => {
+const DashBoardNavbar = ({ userName = 'Dharanidaran' }) => {
     return (
         <Navbar bg="transparent" expand="lg">
             <Container>
@@ -27,6 +27,7 @@ const DashBoardNavbar = () => {
                         </Nav.Item>
                         <Nav.Item>
                             <Dropdown align="end">
+                                <span style={{ color: 'black', marginBottom: '15px' }} className="user-name">{userName}</span>
                                 <Dropdown.Toggle className='userprofile' variant="link" id="dropdown-basic">
                                     <FiUser size={24} className="user-icon" />
                                 </Dropdown.Toggle>
