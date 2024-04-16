@@ -21,7 +21,7 @@
     .box-cell-ImagePreview,
     .box-cell-JsonPreview,
     .box-cell-tablePreview {
-      width: 100%;
+      width: auto;
       height: auto;
     }
   }
@@ -36,11 +36,13 @@
   }
 
   .box-cell-ImagePreview {
-    width: 50%;
+    width: 100%;
+    height: auto;
   }
 
   .box-cell-JsonPreview,
   .box-cell-tablePreview {
-    width: 50%;
+    width: 100%;
+    height: auto;
   }
 }
