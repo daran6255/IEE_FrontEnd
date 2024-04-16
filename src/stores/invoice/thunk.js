@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 import {
     processInvoice as processInvoiceApi,
@@ -26,8 +27,9 @@ export const downloadExcel = (requestId) => async (dispatch) => {
         const response = await downloadExcelApi(requestId);
         const url = window.URL.createObjectURL(response);
         const link = document.createElement('a');
+        const filename = 'IEE_' + moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + '_' + (requestId ? requestId.slice(0, 6) : '_123456') + '.xlsx';
         link.href = url;
-        link.setAttribute('download', requestId + '_extracted.xlsx');
+        link.setAttribute('download', filename);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -41,8 +43,9 @@ export const downloadJson = (requestId) => async (dispatch) => {
         const response = await downloadJsonAPI(requestId);
         const url = window.URL.createObjectURL(response);
         const link = document.createElement('a');
+        const filename = 'IEE_' + moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + '_' + (requestId ? requestId.slice(0, 6) : '_123456') + '.json';
         link.href = url;
-        link.setAttribute('download', requestId + '_extracted.json');
+        link.setAttribute('download', filename);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
