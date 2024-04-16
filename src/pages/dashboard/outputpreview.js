@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Container, Row, Col, Form, Button, Carousel, Spinner, Table } from 'react-bootstrap';
 
-import { processInvoice } from '../../stores/thunk';
+import { processInvoice, downloadExcel, downloadJson } from '../../stores/thunk';
 
 const OutputPreview = () => {
     const dispatch = useDispatch();
@@ -11,12 +11,13 @@ const OutputPreview = () => {
     const entitiesData = createSelector(
         (state) => state.Invoice,
         (state) => ({
+            requestId: state.requestId,
             entities: state.entities,
             loading: state.loading,
         })
     );
 
-    const { entities, loading } = useSelector(entitiesData);
+    const { requestId, entities, loading } = useSelector(entitiesData);
 
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -116,8 +117,8 @@ const OutputPreview = () => {
                         </Form>
                     </Col>
                     <Col className="box-cell align-right">
-                        <Button className='download-button1' variant="primary">Download Excel</Button>
-                        <Button className='download-button2' variant="primary">Download Json</Button>
+                        <Button className='download-button1' variant="primary" onClick={() => dispatch(downloadExcel(requestId))} disabled={requestId === ''}>Download Excel</Button>
+                        <Button className='download-button2' variant="primary" onClick={() => dispatch(downloadJson(requestId))} disabled={requestId === ''}>Download Json</Button>
                     </Col>
                 </Row>
                 <Row>

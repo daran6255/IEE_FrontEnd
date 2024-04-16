@@ -18,3 +18,9 @@ export const getLogin = (data) =>
 
 export const processInvoice = (data) =>
     http.post('/process_invoice', data, { headers: { 'Content-Type': 'multipart/form-data' } });
+
+export const downloadExcel = (requestId) =>
+    http.get('/download_excel/' + requestId, { responseType: 'blob' });
+
+export const downloadJson = (requestId) =>
+    http.get('/download_json/' + requestId, { responseType: 'blob' });
