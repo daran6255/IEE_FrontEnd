@@ -66,7 +66,7 @@ const LoginComponent = (props) => {
             <div className="text-center">
               <a href="#" className="text-muted me-2">Forgot Password?</a>
               <span className="text-muted">|</span>
-              <a href="#" className="text-muted ms-2">Create New Account</a>
+              <a href="/signup" className="text-muted ms-2">Create New Account</a>
             </div>
             <Button
               variant="primary"

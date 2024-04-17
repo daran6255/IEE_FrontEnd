@@ -66,6 +66,7 @@ export const registerUser = (user, history) => async (dispatch) => {
             if (response.status === 'success') {
                 dispatch(registerSuccess(result));
                 history('/login');
+                return;
             }
             else {
                 message = result;
