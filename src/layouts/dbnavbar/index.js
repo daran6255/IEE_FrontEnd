@@ -1,7 +1,8 @@
 import React from 'react';
-import { Navbar, Nav, Image, Container, Dropdown, Button } from 'react-bootstrap';
+import { Navbar, Nav, Image, Container, Dropdown } from 'react-bootstrap';
 import { GiCoins } from "react-icons/gi";
 import { FiUser } from 'react-icons/fi';
+import { FaPowerOff } from "react-icons/fa";
 
 import logo from '../../assets/images/WVI-Logo.png';
 import './navbarStyles.css'; // Import navbar styles
@@ -37,7 +38,8 @@ const DashBoardNavbar = ({ userName = 'Dharanidaran' }) => {
                                     <Dropdown.Item href="#">Buy Credits</Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item href={process.env.PUBLIC_URL + '/logout'}>
-                                        <span className="custom-button" variant="primary">
+                                        <FaPowerOff style={{ color: 'red' }} />&nbsp;
+                                        <span>
                                             Logout
                                         </span>
                                     </Dropdown.Item>
@@ -47,7 +49,7 @@ const DashBoardNavbar = ({ userName = 'Dharanidaran' }) => {
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </Navbar >
     );
 };
 
