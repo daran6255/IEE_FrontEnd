@@ -11,7 +11,7 @@
 @import "pricing.css";
 @import "testimonials.css"; */
 @import "dashboard.css";
-
+@import "SummaryCard.css";
 
 
 @import 'react-toastify/dist/ReactToastify.css';

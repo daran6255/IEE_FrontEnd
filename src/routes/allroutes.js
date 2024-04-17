@@ -7,6 +7,7 @@ import Login from "../pages/login";
 import Signup from "../pages/signup";
 import BuyCredits from "../pages/buycredits";
 import UserProfile from "../pages/myprofile";
+import AdminProfile from "../pages/adminprofile";
 
 const authProtectedRoutes = [
     { path: '/dashboard', component: <DashboardPage /> },
@@ -22,6 +23,7 @@ const publicRoutes = [
     { path: '/signup', component: <Signup /> },
     { path: '/dashboard', component: <DashboardPage /> },
     { path: '/my-profile', component: <UserProfile /> },
+    { path: '/admin-profile', component: <AdminProfile /> },
     { path: '/buy-credits', component: <BuyCredits /> },
 
 ]

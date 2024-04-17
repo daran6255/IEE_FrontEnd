@@ -1,0 +1,58 @@
+/* SummaryCard.css */
+.summary-card-container {
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+}
+
+.summary-info-card {
+    background-color: #f8f9fa;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.summary-info-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bg-custom1 {
+    background-color: #ff6b6b; /* Red */
+}
+
+.bg-custom2 {
+    background-color: #48dbfb; /* Sky Blue */
+}
+
+.bg-custom3 {
+    background-color: #feca57; /* Yellow */
+}
+
+.bg-custom4 {
+    background-color: #1dd1a1; /* Green */
+}
+
+.bg-custom5 {
+    background-color: #8078fe; /* Purple */
+}
+
+.card-title{
+    font-size: 15px !important;
+    text-align: center;
+}
+
+.card-text{
+    font-size: 25px !important;
+    font-weight: bolder;
+    text-align: center;
+}
