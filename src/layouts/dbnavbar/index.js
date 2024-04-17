@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Image, Container, Dropdown, Button } from 'react-bootstrap';
 import { GiCoins } from "react-icons/gi";
 import { FiUser } from 'react-icons/fi';
+
 import logo from '../../assets/images/WVI-Logo.png';
 import './navbarStyles.css'; // Import navbar styles
 
@@ -35,10 +36,10 @@ const DashBoardNavbar = ({ userName = 'Dharanidaran' }) => {
                                     <Dropdown.Item href="#">My Profile</Dropdown.Item>
                                     <Dropdown.Item href="#">Buy Credits</Dropdown.Item>
                                     <Dropdown.Divider />
-                                    <Dropdown.Item>
-                                        <Button className="custom-button" variant="primary">
+                                    <Dropdown.Item href={process.env.PUBLIC_URL + '/logout'}>
+                                        <span className="custom-button" variant="primary">
                                             Logout
-                                        </Button>
+                                        </span>
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>

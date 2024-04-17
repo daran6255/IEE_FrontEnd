@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Image, Container, Dropdown, Button } from 'react-bootstrap';
-import { GiCoins } from "react-icons/gi";
 import { FiUser } from 'react-icons/fi';
+
 import logo from '../../assets/images/WVI-Logo.png';
 import './adminnavbarStyles.css'; // Import navbar styles
 
@@ -22,12 +22,11 @@ const DashBoardNavbar = ({ userName = 'Admin' }) => {
                         <Nav.Item className="user-profile">
                             <Dropdown align="end">
                                 <span>{userName} <FiUser size={24} className="user-icon" /> </span>
-                                <Button className="custom-button" variant="primary">
-                                    Logout
-                                </Button>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item>
-
+                                    <Dropdown.Item href={process.env.PUBLIC_URL + '/logout'}>
+                                        <span className="custom-button" variant="primary">
+                                            Logout
+                                        </span>
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>

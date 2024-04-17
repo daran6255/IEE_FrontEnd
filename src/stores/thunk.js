@@ -1,3 +1,3 @@
-export * from './login/thunk';
+export * from './auth/thunk';
 
 export * from './invoice/thunk';

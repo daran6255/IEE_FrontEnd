@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Container, Form, Image, Button } from 'react-bootstrap';
 import { FiUser, FiEye, FiEyeOff, FiLock, FiMail, FiPhone, FiBriefcase } from 'react-icons/fi';
-import logo from '../../assets/images/WVI-Logo.png';
+import { toast } from 'react-toastify';
 
-const SignUpComponent = () => {
+import logo from '../../assets/images/WVI-Logo.png';
+import { registerUser } from '../../stores/thunk';
+import withRouter from '../../components/common/withRouter';
+
+const SignUpComponent = (props) => {
+    const dispatch = useDispatch();
+
+    const role = 'customer';
     const [name, setName] = useState('');
     const [company, setCompany] = useState('');
     const [email, setEmail] = useState('');
@@ -15,18 +23,13 @@ const SignUpComponent = () => {
 
     const handleSignUp = (e) => {
         e.preventDefault();
-        // Add your signup logic here
-        console.log('Name:', name);
-        console.log('Company:', company);
-        console.log('Email:', email);
-        console.log('Phone:', phone);
-        console.log('Password:', password);
-        console.log('Confirm Password:', confirmPassword);
-        setIsSubmitted(true);
-        // Simulate signup process
-        setTimeout(() => {
-            setIsSubmitted(false);
-        }, 2000);
+
+        if (password !== confirmPassword) {
+            toast.error('Passwords does not match', { autoClose: 3000 });
+            return;
+        }
+
+        dispatch(registerUser({ name, role, company, email, phone, password }, props.router.navigate));
     };
 
     return (
@@ -150,4 +153,4 @@ const SignUpComponent = () => {
     );
 };
 
-export default SignUpComponent;
+export default withRouter(SignUpComponent);

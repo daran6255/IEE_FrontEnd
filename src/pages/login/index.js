@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Form, Image, Button } from 'react-bootstrap';
 import { FiUser, FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import withRouter from '../../components/common/withRouter';
 import { loginUser } from '../../stores/thunk';

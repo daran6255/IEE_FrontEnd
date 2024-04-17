@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import LoginReducer from './login/reducer';
+import AuthReducer from './auth/reducer';
 import InvoiceReducer from './invoice/reducer';
 
 const rootReducer = combineReducers({
-    Login: LoginReducer,
+    Auth: AuthReducer,
     Invoice: InvoiceReducer
 });
 
