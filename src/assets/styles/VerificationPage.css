@@ -1,31 +1,51 @@
-.verification-page-container {
+.card-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
 }
 
+.glassmorphism-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    width: 300px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out; /* Animation for fading in */
+    transition: transform 0.3s ease; /* Transition for hover effect */
+}
+
+.glassmorphism-card:hover {
+    transform: scale(1.05); /* Scale up the card on hover */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .tick-mark {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    color: #00cc66; /* Green color */
     margin-bottom: 20px;
 }
 
+.tick-icon {
+    font-size: 3em;
+}
+
 .verification-message {
-    text-align: center;
-    font-size: 18px;
+    color: rgb(0, 0, 0);
+    font-size: 1.2em;
 }
 
 .login-link {
-    color: #00cc66; /* Green color for link */
-    text-decoration: none;
-}
-.tick-mark {
-    color: #00cc66; /* Green color */
-}
-
-.tick-icon {
-    font-size: 100px;
+    color: #00cc66; /* Green color for the login link */
 }
