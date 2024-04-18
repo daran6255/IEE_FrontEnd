@@ -9,6 +9,7 @@ import Logout from "../pages/logout";
 import BuyCredits from "../pages/buycredits";
 import UserProfile from "../pages/myprofile";
 import AdminProfile from "../pages/adminprofile";
+import VerifyEmail from "../pages/emailverify";
 
 const authProtectedRoutes = [
     { path: '/dashboard', component: <DashboardPage /> },
@@ -26,6 +27,7 @@ const publicRoutes = [
     { path: '/login', component: <Login /> },
     { path: '/signup', component: <Signup /> },
     { path: '/logout', component: <Logout /> },
+    { path: '/verify-email', component: <VerifyEmail /> },
 ]
 
 export { authProtectedRoutes, publicRoutes };
