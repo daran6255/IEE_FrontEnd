@@ -1,0 +1,8 @@
+@media (min-width: 992px) {
+    .custom-container {
+        max-width: 50%;
+    }
+    .image{
+        width: 100px;
+    }
+}

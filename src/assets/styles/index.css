@@ -13,5 +13,5 @@
 @import "dashboard.css";
 @import "SummaryCard.css";
 @import "VerificationPage.css";
-
+@import "signup.css";
 @import 'react-toastify/dist/ReactToastify.css';

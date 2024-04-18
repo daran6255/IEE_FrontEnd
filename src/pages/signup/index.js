@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import logo from '../../assets/images/WVI-Logo.png';
 import { registerUser } from '../../stores/thunk';
 import withRouter from '../../components/common/withRouter';
+import { Link } from 'react-router-dom';
 
 const SignUpComponent = (props) => {
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const SignUpComponent = (props) => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
-            toast.error('Passwords does not match', { autoClose: 3000 });
+            toast.error('Passwords do not match', { autoClose: 3000 });
             return;
         }
 
@@ -33,13 +34,13 @@ const SignUpComponent = (props) => {
     };
 
     return (
-        <Container className="mt-4">
-            <div className="p-4 rounded-lg shadow-lg">
+        <Container className="mt-4 mb-4 custom-container">
+            <div className="p-3 rounded-lg shadow-lg">
                 <div className="glass-effect">
-                    <div className="text-center mb-4">
-                        <Image src={logo} alt="Logo" style={{ maxWidth: '150px' }} />
+                    <div className="text-center">
+                        <Image className='image' src={logo} alt="Logo" style={{ maxWidth: '100px' }} />
                     </div>
-                    <h2 className="text-center mb-4">SignUp</h2>
+                    <h2 className="text-center">SignUp</h2>
                     <Form onSubmit={handleSignUp}>
                         <Form.Group controlId="formBasicName">
                             <Form.Label>Name</Form.Label>
@@ -147,6 +148,9 @@ const SignUpComponent = (props) => {
                             {isSubmitted ? 'Signing Up...' : 'Register'}
                         </Button>
                     </Form>
+                    <p className="mt-2 text-center">
+                        Already have an account? <Link to="/login">Login</Link>
+                    </p>
                 </div>
             </div>
         </Container>
