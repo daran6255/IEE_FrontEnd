@@ -109,6 +109,14 @@ export const verifyUser = (token) => async (dispatch) => {
     }
 };
 
+export const updateUser = (user) => async (dispatch) => {
+    try {
+        dispatch(loginSuccess(user));
+    } catch (error) {
+        dispatch(apiError(error));
+    }
+};
+
 export const logoutUser = () => async (dispatch) => {
     try {
         sessionStorage.removeItem('userAuth');

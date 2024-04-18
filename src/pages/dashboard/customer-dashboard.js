@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, Button, Carousel, Spinner, Table } from 'rea
 
 import { processInvoice, downloadExcel, downloadJson, resetInvoice } from '../../stores/thunk';
 
-const OutputPreview = () => {
+const CustomerDashboard = () => {
     const dispatch = useDispatch();
 
     const entitiesData = createSelector(
@@ -184,4 +184,4 @@ const OutputPreview = () => {
     );
 };
 
-export default OutputPreview;
+export default CustomerDashboard;

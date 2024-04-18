@@ -6,7 +6,7 @@ import { FaPowerOff } from 'react-icons/fa';
 import logo from '../../assets/images/WVI-Logo.png';
 import './adminnavbarStyles.css'; // Import navbar styles
 
-const DashBoardNavbar = ({ userName = 'Admin' }) => {
+const AdminNavbar = ({ userName = 'Admin' }) => {
     return (
         <Navbar bg="transparent" expand="lg">
             <Container>
@@ -22,7 +22,10 @@ const DashBoardNavbar = ({ userName = 'Admin' }) => {
                     <Nav className="ms-auto">
                         <Nav.Item className="user-profile">
                             <Dropdown align="end">
-                                <span>{userName} <FiUser size={24} className="user-icon" /> </span>
+                                <span style={{ color: 'black', marginBottom: '15px' }} className="user-name">{userName}</span>
+                                <Dropdown.Toggle className='userprofile' variant="link" id="dropdown-basic">
+                                    <FiUser size={24} className="user-icon" />
+                                </Dropdown.Toggle>
                                 <Dropdown.Menu>
                                     <Dropdown.Item href={process.env.PUBLIC_URL + '/logout'}>
                                         <FaPowerOff style={{ color: 'red' }} />&nbsp;
@@ -40,4 +43,4 @@ const DashBoardNavbar = ({ userName = 'Admin' }) => {
     );
 };
 
-export default DashBoardNavbar;
+export default AdminNavbar;

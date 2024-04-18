@@ -4,13 +4,17 @@ import { useDispatch } from 'react-redux';
 
 import { setAuthorization } from '../helpers/httputility';
 import { useProfile } from '../helpers/hooks/userhooks';
-import { logoutUser } from '../stores/thunk';
+import { updateUser, logoutUser } from '../stores/thunk';
 
-const AuthProtected = (props) => {
+const AuthProtected = ({ children, roles }) => {
     const dispatch = useDispatch();
     const { userProfile, loading, token } = useProfile();
 
     useEffect(() => {
+        if (userProfile) {
+            dispatch(updateUser(userProfile));
+        }
+
         if (userProfile && !loading && token) {
             setAuthorization(token);
         } else if (!userProfile && loading) {
@@ -30,7 +34,11 @@ const AuthProtected = (props) => {
         );
     }
 
-    return <>{props.children}</>;
+    if (roles && !roles.includes(userProfile.role)) {
+        return <Navigate to={{ pathname: '/page-not-found' }} />;
+    }
+
+    return <>{children}</>;
 };
 
 export default AuthProtected;

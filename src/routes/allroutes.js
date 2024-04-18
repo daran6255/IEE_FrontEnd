@@ -8,18 +8,17 @@ import Signup from "../pages/signup";
 import Logout from "../pages/logout";
 import BuyCredits from "../pages/buycredits";
 import UserProfile from "../pages/myprofile";
-import AdminProfile from "../pages/adminprofile";
 import VerifyEmail from "../pages/emailverify";
+import PageNotFound from '../pages/others/errors/PageNotFound';
 
 const authProtectedRoutes = [
-    { path: '/dashboard', component: <DashboardPage /> },
-    { path: '/my-profile', component: <UserProfile /> },
-    { path: '/admin-profile', component: <AdminProfile /> },
-    { path: '/buy-credits', component: <BuyCredits /> },
+    { path: '/dashboard', component: <DashboardPage />, roles: ['admin', 'customer'] },
+    { path: '/my-profile', component: <UserProfile />, roles: ['customer'] },
+    { path: '/buy-credits', component: <BuyCredits />, roles: ['customer'] },
 
     // this route must be at the end
-    { path: '/', exact: true, component: <Navigate to='/dashboard' /> },
-    { path: '*', component: <Navigate to='/dashboard' /> }
+    { path: '/', exact: true, component: <Navigate to='/dashboard' />, roles: ['admin', 'customer'] },
+    { path: '*', component: <Navigate to='/dashboard' />, roles: ['admin', 'customer'] }
 ]
 
 const publicRoutes = [
@@ -28,6 +27,9 @@ const publicRoutes = [
     { path: '/signup', component: <Signup /> },
     { path: '/logout', component: <Logout /> },
     { path: '/verify-email/:token', component: <VerifyEmail /> },
+
+    // Other routes
+    { path: '/page-not-found', component: <PageNotFound /> },
 ]
 
 export { authProtectedRoutes, publicRoutes };

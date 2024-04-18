@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import BrowserRouter
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import AuthProtected from './protectedroutes';
 
@@ -23,7 +23,7 @@ const Index = () => {
                     <Route
                         path={route.path}
                         element={
-                            <AuthProtected>
+                            <AuthProtected roles={route.roles}>
                                 {route.component}
                             </AuthProtected>
                         }
