@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { createSelector } from 'reselect';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, Form, Image, Button } from 'react-bootstrap';
 import { FiUser, FiEye, FiEyeOff, FiLock, FiMail, FiPhone, FiBriefcase } from 'react-icons/fi';
 import { toast } from 'react-toastify';
@@ -7,7 +9,6 @@ import { toast } from 'react-toastify';
 import logo from '../../assets/images/WVI-Logo.png';
 import { registerUser } from '../../stores/thunk';
 import withRouter from '../../components/common/withRouter';
-import { Link } from 'react-router-dom';
 
 const SignUpComponent = (props) => {
     const dispatch = useDispatch();
@@ -21,6 +22,14 @@ const SignUpComponent = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const userSelector = createSelector(
+        (state) => state.Auth,
+        (state) => ({
+            loading: state.registerLoading,
+        })
+    );
+    const { loading } = useSelector(userSelector);
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -141,11 +150,11 @@ const SignUpComponent = (props) => {
                         <Button
                             variant="primary"
                             type="submit"
-                            disabled={isSubmitted}
+                            disabled={loading}
                             className="signup-button mt-3"
                             style={{ width: '100%' }}
                         >
-                            {isSubmitted ? 'Signing Up...' : 'Register'}
+                            {loading ? 'Signing Up...' : 'Register'}
                         </Button>
                     </Form>
                     <p className="mt-2 text-center">

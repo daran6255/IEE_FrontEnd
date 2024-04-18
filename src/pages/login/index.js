@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { createSelector } from 'reselect';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, Form, Image, Button } from 'react-bootstrap';
 import { FiUser, FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
 
 import withRouter from '../../components/common/withRouter';
 import { loginUser } from '../../stores/thunk';
@@ -16,6 +17,15 @@ const LoginComponent = (props) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+
+  const userSelector = createSelector(
+    (state) => state.Auth,
+    (state) => ({
+      loading: state.loading,
+    })
+  );
+  const { loading } = useSelector(userSelector);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -71,11 +81,11 @@ const LoginComponent = (props) => {
             <Button
               variant="primary"
               type="submit"
-              disabled={isSubmitted}
+              disabled={loading}
               className="login-button"
               style={{ margin: '20px', marginLeft: '100px' }}
             >
-              {isSubmitted ? 'Logging in...' : 'Login'}
+              {loading ? 'Logging in...' : 'Login'}
             </Button>
           </Form>
         </div>

@@ -27,7 +27,7 @@ const publicRoutes = [
     { path: '/login', component: <Login /> },
     { path: '/signup', component: <Signup /> },
     { path: '/logout', component: <Logout /> },
-    { path: '/verify-email', component: <VerifyEmail /> },
+    { path: '/verify-email/:token', component: <VerifyEmail /> },
 ]
 
 export { authProtectedRoutes, publicRoutes };

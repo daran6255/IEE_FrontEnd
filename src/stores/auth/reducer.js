@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const initialState = {
     user: {},
     error: '', // for error message
+    verified: false,
     loading: false,
     registerLoading: false,
 };
@@ -33,11 +34,22 @@ const authSlice = createSlice({
 
         logoutSuccess(state) {
             state.user = {};
+        },
+        verificationSuccess(state) {
+            state.verified = true;
         }
     },
 });
 
-export const { apiError, loginStarted, registerStarted, loginSuccess, registerSuccess, logoutSuccess } =
+export const {
+    apiError,
+    loginStarted,
+    registerStarted,
+    loginSuccess,
+    registerSuccess,
+    logoutSuccess,
+    verificationSuccess
+} =
     authSlice.actions;
 
 export default authSlice.reducer;

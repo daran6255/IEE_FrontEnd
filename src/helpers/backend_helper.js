@@ -19,6 +19,9 @@ export const loginUser = (data) =>
 export const registerUser = (data) =>
     http.post('/register', data);
 
+export const verifyUser = (token) =>
+    http.get('/verify_email/' + token);
+
 export const processInvoice = (data) =>
     http.post('/process_invoice', data, { headers: { 'Content-Type': 'multipart/form-data' } });
 

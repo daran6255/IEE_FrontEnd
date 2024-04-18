@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import {
     loginUser as loginUserApi,
     registerUser as registerUserApi,
+    verifyUser as verifyUserApi,
 } from '../../helpers/backend_helper';
 
 import {
@@ -12,6 +13,7 @@ import {
     loginSuccess,
     registerSuccess,
     logoutSuccess,
+    verificationSuccess,
 } from './reducer';
 
 export const loginUser = (user, history) => async (dispatch) => {
@@ -39,7 +41,7 @@ export const loginUser = (user, history) => async (dispatch) => {
         }
 
         dispatch(apiError(message));
-        toast.error(result, { autoClose: 3000 });
+        toast.error(message, { autoClose: 3000 });
     } catch (error) {
         dispatch(apiError(error));
         toast.error(error, { autoClose: 3000 });
@@ -65,7 +67,33 @@ export const registerUser = (user, history) => async (dispatch) => {
         if (result) {
             if (response.status === 'success') {
                 dispatch(registerSuccess(result));
+                toast.info('Verification email has been sent to your email.', { autoClose: 10000 });
                 history('/login');
+                return;
+            }
+            else {
+                message = result;
+            }
+        }
+
+        dispatch(apiError(message));
+        toast.error(message, { autoClose: 3000 });
+    } catch (error) {
+        dispatch(apiError(error));
+        toast.error(error, { autoClose: 3000 });
+    }
+};
+
+export const verifyUser = (token) => async (dispatch) => {
+    try {
+        let response = await verifyUserApi(token);
+
+        const result = response.result;
+        let message = 'Something went wrong';
+
+        if (result) {
+            if (response.status === 'success') {
+                dispatch(verificationSuccess());
                 return;
             }
             else {
