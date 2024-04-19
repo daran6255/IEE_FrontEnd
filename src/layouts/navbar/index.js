@@ -8,7 +8,7 @@ const NavBarComponent = () => {
   return (
     <Navbar expand="lg" bg="transparent" className="navbar-custom">
       <Container>
-        <Navbar.Brand href="#" style={{ display: 'flex', alignItems: 'center' }}>
+        <Navbar.Brand href="/" style={{ display: 'flex', alignItems: 'center' }}>
           <Image className="LogoImage" src={logo} alt="Logo" style={{ marginRight: '10px' }} />
           <span style={{ color: 'black' }}>WinVinaya InfoSystems</span>
         </Navbar.Brand>

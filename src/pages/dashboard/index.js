@@ -21,14 +21,14 @@ const DashboardPage = () => {
   return (
     user.role && user.role === 'admin' ? (
       <React.Fragment>
-        <AdminNavbar />
+        <AdminNavbar userName={user.name} />
         <AdminDashboard />
         <FooterComponent />
       </React.Fragment>
 
     ) : (
       <React.Fragment>
-        <DashBoardNavbar />
+        <DashBoardNavbar userName={user.name} />
         <CustomerDashboard />
         <FooterComponent />
       </React.Fragment>

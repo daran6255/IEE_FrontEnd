@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
-import { Card, Form } from 'react-bootstrap';
-import { FiUser, FiKey, FiEye, FiEyeOff, FiEdit } from 'react-icons/fi';
+import { Button, Card, Container, Form } from 'react-bootstrap';
+import { FiKey, FiEye, FiEyeOff } from 'react-icons/fi';
+import { MdOutlinePhone, MdOutlineMailOutline } from "react-icons/md";
+import { GrOrganization } from "react-icons/gr";
 import Avatar from 'react-avatar';
+
 import './ProfileCard.css'; // Import custom styles for ProfileCard
 
-const ProfileCard = ({ name = 'dharani', company = 'Winvinaya', email, phone, password }) => {
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    const [isEditMode, setIsEditMode] = useState(false);
-    const [editedPassword, setEditedPassword] = useState(password);
+const ProfileCard = ({ name, company, email, phone, onPasswordChange }) => {
+    const [isOldPasswordVisible, setIsOldPasswordVisible] = useState(false);
+    const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
 
-    const togglePasswordVisibility = () => {
-        setIsPasswordVisible(!isPasswordVisible);
+    const [oldPassword, setOldPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+
+    const toggleOldPasswordVisibility = () => {
+        setIsOldPasswordVisible(!isOldPasswordVisible);
     };
-
-    const toggleEditMode = () => {
-        setIsEditMode(!isEditMode);
-    };
-
-    const handleSavePassword = () => {
-        // Here you can implement the logic to save the edited password
-        console.log("Edited password:", editedPassword);
-        // After saving, exit edit mode
-        toggleEditMode();
+    const toggleNewPasswordVisibility = () => {
+        setIsNewPasswordVisible(!isNewPasswordVisible);
     };
 
     return (
@@ -35,48 +32,51 @@ const ProfileCard = ({ name = 'dharani', company = 'Winvinaya', email, phone, pa
                         <Card.Title className="mb-4">{name}</Card.Title>
                         <div className="profile-info">
                             <div className="info-item">
-                                <FiUser className="info-icon" />
+                                <GrOrganization className="info-icon" />
                                 <span style={{ marginRight: '10px' }} className="info-label">Company: </span>
                                 <span>{company}</span>
                             </div>
                             <div className="info-item">
-                                <FiUser className="info-icon" />
+                                <MdOutlineMailOutline className="info-icon" />
                                 <span style={{ marginRight: '10px' }} className="info-label">Email:</span>
                                 <span>{email}</span>
                             </div>
                             <div className="info-item">
-                                <FiUser className="info-icon" />
+                                <MdOutlinePhone className="info-icon" />
                                 <span style={{ marginRight: '10px' }} className="info-label">Phone:</span>
                                 <span>{phone}</span>
                             </div>
                             <div className="info-item">
                                 <FiKey className="info-icon" />
-                                <span style={{ marginRight: '10px' }} className="info-label">Password:</span>
-                                {isEditMode ? (
-                                    <>
-                                        <Form.Control
-                                            type={isPasswordVisible ? "text" : "password"}
-                                            value={editedPassword}
-                                            onChange={(e) => setEditedPassword(e.target.value)}
-                                            className="border-0" // Remove the border
-                                        />
-                                        <FiEdit className="edit-icon" size={24} onClick={handleSavePassword} />
-                                    </>
-                                ) : (
-                                    <>
-                                        <Form.Control
-                                            type={isPasswordVisible ? "text" : "password"}
-                                            value={password}
-                                            readOnly
-                                            className="border-0" // Remove the border
-                                        />
-                                        <FiEdit className="edit-icon" onClick={toggleEditMode} />
-                                    </>
-                                )}
-                                <span className="view-password-icon" onClick={togglePasswordVisibility} style={{ marginLeft: '5px' }}>
-                                    {isPasswordVisible ? <FiEyeOff /> : <FiEye />}
-                                </span>
+                                <span className="info-label">Change Password:</span>
                             </div>
+                            <Container className='passContainer'>
+                                <div className="info-item">
+                                    <span className="info-label" style={{ marginRight: '10px' }} >Old Password:</span>
+                                    <Form.Control
+                                        style={{ marginRight: '10px' }}
+                                        type={isOldPasswordVisible ? "text" : "password"}
+                                        value={oldPassword}
+                                        onChange={(e) => setOldPassword(e.target.value)}
+                                    />
+                                    <span className="view-password-icon" onClick={toggleOldPasswordVisibility} style={{ marginLeft: '5px' }}>
+                                        {isOldPasswordVisible ? <FiEyeOff /> : <FiEye />}
+                                    </span>
+                                </div>
+                                <div className="info-item">
+                                    <span className="info-label" style={{ marginRight: '10px' }} >New Password:</span>
+                                    <Form.Control
+                                        style={{ marginRight: '10px' }}
+                                        type={isNewPasswordVisible ? "text" : "password"}
+                                        value={newPassword}
+                                        onChange={(e) => setNewPassword(e.target.value)}
+                                    />
+                                    <span className="view-password-icon" onClick={toggleNewPasswordVisibility} style={{ marginLeft: '5px' }}>
+                                        {isNewPasswordVisible ? <FiEyeOff /> : <FiEye />}
+                                    </span>
+                                </div>
+                                <Button className="pass-update" onClick={() => onPasswordChange(oldPassword, newPassword)}>Update</Button>
+                            </Container>
                         </div>
                     </Card.Body>
                 </div>

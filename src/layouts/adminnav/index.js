@@ -10,7 +10,7 @@ const AdminNavbar = ({ userName = 'Admin' }) => {
     return (
         <Navbar bg="transparent" expand="lg">
             <Container>
-                <Navbar.Brand href="#" style={{ display: 'flex', alignItems: 'flex-end' }}>
+                <Navbar.Brand href="/" style={{ display: 'flex', alignItems: 'flex-end' }}>
                     <Image className="LogoImage" src={logo} alt="Logo" style={{ marginRight: '10px' }} />
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                         <span style={{ marginBottom: '15px', marginLeft: '10px' }}>WinVinaya InfoSystems</span>

@@ -7,11 +7,11 @@ import { FaPowerOff } from "react-icons/fa";
 import logo from '../../assets/images/WVI-Logo.png';
 import './navbarStyles.css'; // Import navbar styles
 
-const DashBoardNavbar = ({ userName = 'Dharanidaran' }) => {
+const DashBoardNavbar = ({ userName }) => {
     return (
         <Navbar bg="transparent" expand="lg">
             <Container>
-                <Navbar.Brand href="#" style={{ display: 'flex', alignItems: 'flex-end' }}>
+                <Navbar.Brand href="/" style={{ display: 'flex', alignItems: 'flex-end' }}>
                     <Image className="LogoImage" src={logo} alt="Logo" style={{ marginRight: '10px' }} />
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                         <span style={{ marginBottom: '15px', marginLeft: '10px' }}>WinVinaya InfoSystems</span>
@@ -34,7 +34,7 @@ const DashBoardNavbar = ({ userName = 'Dharanidaran' }) => {
                                     <FiUser size={24} className="user-icon" />
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="#">My Profile</Dropdown.Item>
+                                    <Dropdown.Item href="/my-profile">My Profile</Dropdown.Item>
                                     <Dropdown.Item href="#">Buy Credits</Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item href={process.env.PUBLIC_URL + '/logout'}>

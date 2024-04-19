@@ -18,7 +18,18 @@
     align-items: center;
     margin-bottom: 10px;
 }
-
 .info-icon {
     margin-right: 10px;
+}
+
+.passContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid rgb(215, 214, 214);
+    padding: 10px;
+}
+
+.pass-update {
+    text-align: center;
 }

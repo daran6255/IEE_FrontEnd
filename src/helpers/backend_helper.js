@@ -22,6 +22,9 @@ export const registerUser = (data) =>
 export const verifyUser = (token) =>
     http.get('/verify_email/' + token);
 
+export const updatePassword = (data) =>
+    http.post('/update_password', data);
+
 export const processInvoice = (data) =>
     http.post('/process_invoice', data, { headers: { 'Content-Type': 'multipart/form-data' } });
 
