@@ -28,7 +28,7 @@ const AdminProfile = () => {
                             <Nav.Link onClick={() => handleTabChange('Overview')}>Overview</Nav.Link>
                             <Nav.Link onClick={() => handleTabChange('Customer')}>Customers</Nav.Link>
                             <Nav.Link onClick={() => handleTabChange('CreditsManagement')}>Credits Management</Nav.Link>
-                            {/* <Nav.Link onClick={() => handleTabChange('Analytics')}>Analytics View</Nav.Link> */}
+                            {/* <Nav.Link style={{ color: activeTab === 'Analytics' ? 'blue' : 'black' }} onClick={() => handleTabChange('Analytics')}>Analytics View</Nav.Link> */}
                         </Nav>
                     </Col>
                     <Col sm={12} md={10}>

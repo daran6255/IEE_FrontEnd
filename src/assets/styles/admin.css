@@ -1,0 +1,7 @@
+.active-tab {
+    color: blue !important;
+}
+
+.inactive-tab {
+    color: black !important;
+}

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { PiCurrencyInr } from "react-icons/pi";
 
 const CreditsTable = () => {
     const data = {
-        "row1": ['1', 'test-1', 'XYZ', '200', '02-06-23'],
-        "row2": ['2', 'test-1', 'XYZ', '300', '02-07-23'],
-        "row3": ['3', 'test-1', 'XYZ', '400', '12-08-23'],
-        "row4": ['4', 'test-1', 'XYZ', '500', '25-09-23']
+        "row1": ['1', 'test-1', '2000', '200'],
+        "row2": ['2', 'test-1', '570', '300'],
+        "row3": ['3', 'test-1', '400', '400'],
+        "row4": ['4', 'test-1', '1800', '500']
     };
 
     const [showAddModal, setShowAddModal] = useState(false);
@@ -20,6 +21,8 @@ const CreditsTable = () => {
     const handleCloseHistoryModal = () => setShowHistoryModal(false);
     const handleShowHistoryModal = () => setShowHistoryModal(true);
 
+
+
     const handleAddCredits = () => {
         // Add logic here to handle adding credits
         console.log("Adding credits:", credits);
@@ -29,10 +32,10 @@ const CreditsTable = () => {
     const handleViewHistory = () => {
         // Fetch history data from API or somewhere else and set it in the state
         const exampleHistoryData = [
-            { date: '2023-06-01', credits: '200', amount: '$20' },
-            { date: '2023-06-05', credits: '300', amount: '$30' },
-            { date: '2023-07-10', credits: '400', amount: '$40' },
-            { date: '2023-08-15', credits: '500', amount: '$50' }
+            { date: '2023-06-01', addedby: 'customer', credits: '200', amount: '20', paymentdate: '2023-06-01', status: 'success' },
+            { date: '2023-06-05', addedby: 'Admin', credits: '300', amount: '30', paymentdate: '', status: '' },
+            { date: '2023-07-10', addedby: 'customer', credits: '400', amount: '40', paymentdate: '2023-06-01', status: 'success' },
+            { date: '2023-08-15', addedby: 'Admin', credits: '500', amount: '50', paymentdate: '', status: '' }
         ];
         setHistoryData(exampleHistoryData);
         handleShowHistoryModal(); // Show the history modal
@@ -45,18 +48,26 @@ const CreditsTable = () => {
                     <tr>
                         <th>Sl. No</th>
                         <th>Customer Name</th>
-                        <th>Company</th>
+                        <th>Total credits bought</th>
                         <th>Available Credits</th>
-                        <th>Last credit Buy</th>
                         <th>Action</th>
-                        <th>History</th>
+                        <th>Credits History</th>
                     </tr>
                 </thead>
                 <tbody>
                     {Object.keys(data).map((key) => (
                         <tr key={key}>
                             {data[key].map((cell, index) => (
-                                <td key={index}>{cell}</td>
+                                <td key={index}>
+                                    {index === 1 ? (
+                                        <a href="#" onClick={() => (data[key])}>
+                                            {cell}
+                                        </a>
+                                    ) : (
+                                        cell
+                                    )}
+
+                                </td>
                             ))}
                             <td>
                                 <Button variant="info" onClick={handleShowAddModal}>Add Credits</Button>
@@ -102,7 +113,12 @@ const CreditsTable = () => {
                             <tr>
                                 <th>Date of Purchase</th>
                                 <th>Credits Purchased</th>
+
                                 <th>Amount</th>
+                                <th>Credits added by</th>
+                                <th>Payment Date</th>
+                                <th>Payment Status</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -110,7 +126,10 @@ const CreditsTable = () => {
                                 <tr key={index}>
                                     <td>{row.date}</td>
                                     <td>{row.credits}</td>
-                                    <td>{row.amount}</td>
+                                    <td><PiCurrencyInr size={12} />{row.amount}</td>
+                                    <td>{row.addedby}</td>
+                                    <td>{row.paymentdate}</td>
+                                    <td style={{ color: row.status === 'success' ? 'green' : 'red', fontWeight: 'bold' }}>{row.status}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -120,6 +139,8 @@ const CreditsTable = () => {
                     <Button variant="danger" onClick={handleCloseHistoryModal}>Close</Button>
                 </Modal.Footer>
             </Modal>
+
+
         </div>
     );
 };

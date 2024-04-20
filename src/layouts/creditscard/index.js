@@ -6,20 +6,23 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
     // Calculate percentage of used credits
     const usedPercentage = (usedCredits / totalCredits) * 100;
     const data = {
-        "header": ['SLNO', 'DATE', 'credits purchased', 'Available', 'Amount'],
-        "row1": ['1', '02-06-23', '500', '100', '300.00'],
-        "row2": ['2', '02-07-23', '5000', '100', '300.00'],
-        "row3": ['3', '12-08-23', '300', '100', '300.00'],
-        "row4": ['4', '25-09-23', '50', '100', '600.00']
+        "header": ['SLNO', 'DATE', 'Prchased by', 'credits purchased', 'Available credits', 'Amount', 'Payment date', 'Payment status'],
+        "row1": ['1', '02-06-23', 'customer', '500', '100', '300.00', '02-06-23', 'success'],
+        "row2": ['2', '02-07-23', 'customer', '5000', '100', '300.00', '02-06-23', 'success'],
+        "row3": ['3', '12-08-23', 'customer', '300', '100', '300.00', '02-06-23', 'success'],
+        "row4": ['4', '25-09-23', 'customer', '50', '100', '600.00', '02-06-23', 'success'],
+        "row4": ['4', '25-09-23', 'Admin', '50', '100', '', '', '']
     };
 
     return (
         <Card className="credits-card" style={{ margin: '10px' }}>
             <Card.Body>
                 <Row>
-                    <Col xs={12} md={6}>
+                    {/* First Row */}
+                    <Col xs={12}>
                         <Row>
-                            <Col xs={6}>
+                            <Col xs={4}>
+                                {/* Available Credits */}
                                 <Card className="credit-info" style={{ backgroundColor: '#1671a6', color: 'white', marginBottom: '10px' }}>
                                     <Card.Body>
                                         <Card.Title>Available Credits</Card.Title>
@@ -27,7 +30,8 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
                                     </Card.Body>
                                 </Card>
                             </Col>
-                            <Col xs={6}>
+                            <Col xs={4}>
+                                {/* Total Credits */}
                                 <Card className="credit-info" style={{ backgroundColor: '#2d733b', color: 'white', marginBottom: '10px' }}>
                                     <Card.Body>
                                         <Card.Title>Total Credits</Card.Title>
@@ -35,9 +39,24 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
                                     </Card.Body>
                                 </Card>
                             </Col>
+                            <Col xs={4}>
+                                {/* Used Credits */}
+                                <Card className="credit-info" style={{ backgroundColor: '#9e335c', color: 'white', marginBottom: '10px' }}>
+                                    <Card.Body>
+                                        <Card.Title>Used Credits</Card.Title>
+                                        <Card.Text>{usedCredits}</Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
                         </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    {/* Second Row */}
+                    <Col xs={12}>
                         <Row>
-                            <Col xs={6}>
+                            <Col xs={4}>
+                                {/* Extract Invoice */}
                                 <Card className="credit-info" style={{ backgroundColor: '#E38627', color: 'white', marginBottom: '10px' }}>
                                     <Card.Body>
                                         <Card.Title>Extract Invoice</Card.Title>
@@ -45,7 +64,8 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
                                     </Card.Body>
                                 </Card>
                             </Col>
-                            <Col xs={6}>
+                            <Col xs={4}>
+                                {/* Extracted Invoice */}
                                 <Card className="credit-info" style={{ backgroundColor: '#6A2135', color: 'white', marginBottom: '10px' }}>
                                     <Card.Body>
                                         <Card.Title>Extracted Invoice</Card.Title>
@@ -53,18 +73,16 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
                                     </Card.Body>
                                 </Card>
                             </Col>
+                            <Col xs={4}>
+                                {/* Buy Credits */}
+                                <Card className="credit-info" style={{ marginBottom: '10px', textAlign: 'center' }}>
+                                    <Card.Body>
+                                        <Card.Title>Buy Credits</Card.Title>
+                                        <Button variant="outline-primary" className="mt-auto">Buy Credits</Button>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
                         </Row>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <div className="d-flex flex-column h-100">
-                            <Card className="credit-info" style={{ backgroundColor: '#9e335c', color: 'white', paddingBottom: '38px' }}>
-                                <Card.Body>
-                                    <Card.Title>Used Credits</Card.Title>
-                                    <Card.Text>{usedCredits}</Card.Text>
-                                    <Button variant="outline-primary" className="mt-auto">Buy Credits</Button>
-                                </Card.Body>
-                            </Card>
-                        </div>
                     </Col>
                 </Row>
                 <Row>
