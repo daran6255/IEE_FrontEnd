@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, Row, Col, Button, Table } from 'react-bootstrap';
-import { PieChart } from 'react-minimal-pie-chart';
 
 const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 40, totalInvoiceProcessed = 100, invoiceCanBeProcessed = 60 }) => {
     // Calculate percentage of used credits
