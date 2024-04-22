@@ -20,15 +20,7 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
                     {/* First Row */}
                     <Col xs={12}>
                         <Row>
-                            <Col xs={4}>
-                                {/* Available Credits */}
-                                <Card className="credit-info" style={{ backgroundColor: '#1671a6', color: 'white', marginBottom: '10px' }}>
-                                    <Card.Body>
-                                        <Card.Title>Available Credits</Card.Title>
-                                        <Card.Text>{availableCredits}</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
+
                             <Col xs={4}>
                                 {/* Total Credits */}
                                 <Card className="credit-info" style={{ backgroundColor: '#2d733b', color: 'white', marginBottom: '10px' }}>
@@ -47,6 +39,15 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
                                     </Card.Body>
                                 </Card>
                             </Col>
+                            <Col xs={4}>
+                                {/* Available Credits */}
+                                <Card className="credit-info" style={{ backgroundColor: '#1671a6', color: 'white', marginBottom: '10px' }}>
+                                    <Card.Body>
+                                        <Card.Title>Available Credits</Card.Title>
+                                        <Card.Text>{availableCredits}</Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
                         </Row>
                     </Col>
                 </Row>
@@ -54,15 +55,6 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
                     {/* Second Row */}
                     <Col xs={12}>
                         <Row>
-                            <Col xs={4}>
-                                {/* Extract Invoice */}
-                                <Card className="credit-info" style={{ backgroundColor: '#E38627', color: 'white', marginBottom: '10px' }}>
-                                    <Card.Body>
-                                        <Card.Title>Extract Invoice</Card.Title>
-                                        <Card.Text>{availableCredits}</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
                             <Col xs={4}>
                                 {/* Extracted Invoice */}
                                 <Card className="credit-info" style={{ backgroundColor: '#6A2135', color: 'white', marginBottom: '10px' }}>
@@ -73,11 +65,34 @@ const CreditsCard = ({ totalCredits = 100, availableCredits = 60, usedCredits = 
                                 </Card>
                             </Col>
                             <Col xs={4}>
+                                {/* Extract Invoice */}
+                                <Card className="credit-info" style={{ backgroundColor: '#E38627', color: 'white', marginBottom: '10px' }}>
+                                    <Card.Body>
+                                        <Card.Title>Extract Invoice</Card.Title>
+                                        <Card.Text>{availableCredits}</Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col xs={4}>
                                 {/* Buy Credits */}
                                 <Card className="credit-info" style={{ marginBottom: '10px', textAlign: 'center' }}>
                                     <Card.Body>
                                         <Card.Title>Buy Credits</Card.Title>
                                         <Button variant="outline-primary" className="mt-auto">Buy Credits</Button>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={12}>
+                        <Row>
+                            <Col xs={4}>
+                                <Card className="credit-info" style={{ backgroundColor: '#6A2135', color: 'white', marginBottom: '10px' }}>
+                                    <Card.Body>
+                                        <Card.Title>Total Amount</Card.Title>
+                                        <Card.Text>{totalCredits}</Card.Text>
                                     </Card.Body>
                                 </Card>
                             </Col>
