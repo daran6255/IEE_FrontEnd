@@ -7,9 +7,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import rootReducer from './stores';
 import { BrowserRouter } from 'react-router-dom';
+import moment from 'moment-timezone';
 
 const store = configureStore({ reducer: rootReducer, devTools: true });
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+moment.tz.setDefault("Asia/Kolkata");
 
 root.render(
   <Provider store={store} >

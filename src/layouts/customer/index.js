@@ -1,14 +1,8 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import moment from 'moment-timezone';
 
-const DataTable = () => {
-    const data = {
-        "row1": ['1', 'test-1', 'XYZ', 'abc@gmail.com', '1234567890', '02-06-23'],
-        "row2": ['2', 'test-1', 'XYZ', 'abc@gmail.com', '1234567890', '02-07-23'],
-        "row3": ['3', 'test-1', 'XYZ', 'abc@gmail.com', '1234567890', '12-08-23'],
-        "row4": ['4', 'test-1', 'XYZ', 'abc@gmail.com', '1234567890', '25-09-23']
-    };
-
+const CustomerTable = ({ data }) => {
     return (
         <div style={{ width: '90%', height: 'auto' }}>
             <Table striped bordered hover responsive="md">
@@ -23,11 +17,14 @@ const DataTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(data).map((key) => (
-                        <tr key={key}>
-                            {data[key].map((cell, index) => (
-                                <td key={index}>{cell}</td>
-                            ))}
+                    {data.map((item, index) => (
+                        <tr key={item.id}>
+                            <td>{index + 1}</td>
+                            <td>{item.name}</td>
+                            <td>{item.company}</td>
+                            <td>{item.email}</td>
+                            <td>{item.phone}</td>
+                            <td>{moment.utc(item.createdAt).format()}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -36,4 +33,4 @@ const DataTable = () => {
     );
 };
 
-export default DataTable;
+export default CustomerTable;
