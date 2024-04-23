@@ -5,8 +5,9 @@ import { createSelector } from 'reselect';
 import DashBoardNavbar from '../../layouts/dbnavbar';
 import AdminNavbar from '../../layouts/adminnav';
 import FooterComponent from '../../layouts/footer';
-import CustomerDashboard from './customer-dashboard';
-import AdminDashboard from './admin-dashboard';
+
+import CustomerDashboard from './customer';
+import AdminDashboard from './admin';
 
 const DashboardPage = () => {
   const authData = createSelector(

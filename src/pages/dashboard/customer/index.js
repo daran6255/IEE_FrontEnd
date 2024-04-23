@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Container, Row, Col, Form, Button, Carousel, Spinner, Table } from 'react-bootstrap';
 
-import { processInvoice, downloadExcel, downloadJson, resetInvoice } from '../../stores/thunk';
+import { processInvoice, downloadExcel, downloadJson, resetInvoice } from '../../../stores/thunk';
 
 const CustomerDashboard = () => {
     const dispatch = useDispatch();

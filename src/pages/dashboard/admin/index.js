@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Row, Col, Nav, Spinner } from 'react-bootstrap';
 
-import Overview from '../../layouts/overview';
-import Customer from '../../layouts/customer';
-import CreditManagement from '../../layouts/creditsmanagement';
+import Overview from '../../../layouts/overview';
+import Customer from '../../../layouts/customer';
+import { getCustomers } from '../../../stores/thunk';
 
-import { getCustomers } from '../../stores/thunk';
+import CreditManagement from './creditsmanagement';
 
 const AdminDashboard = () => {
     const dispatch = useDispatch();
@@ -29,9 +29,8 @@ const AdminDashboard = () => {
             case 'Overview':
                 break;
             case 'Customer':
-                dispatch(getCustomers());
-                break;
             case 'CreditsManagement':
+                dispatch(getCustomers());
                 break;
             default:
                 break;

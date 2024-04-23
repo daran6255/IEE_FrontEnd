@@ -28,6 +28,9 @@ export const updatePassword = (data) =>
 export const getCustomers = () =>
     http.get('/get_customers',);
 
+export const getCreditHistory = (userId) =>
+    http.get('/credits_history/' + userId);
+
 export const processInvoice = (data) =>
     http.post('/process_invoice', data, { headers: { 'Content-Type': 'multipart/form-data' } });
 
