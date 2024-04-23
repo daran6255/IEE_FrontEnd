@@ -3,7 +3,8 @@ import { Card, Row, Col } from 'react-bootstrap';
 import { PiCurrencyInr } from "react-icons/pi";
 
 
-const SummaryCard = ({ customers = '10', totalCreditsBought = '25000', usedCredits = '23456', invoicesExtracted = '500', amountCreditsPurchased = '250000' }) => {
+const SummaryCard = ({ data }) => {
+    console.log(data);
     return (
         <div className="summary-card-container" style={{ width: '90%' }}>
             <Card className="summary-card">
@@ -13,7 +14,7 @@ const SummaryCard = ({ customers = '10', totalCreditsBought = '25000', usedCredi
                             <Card className="summary-info-card bg-custom1">
                                 <Card.Body>
                                     <Card.Title className='card-title'>No. of Customers</Card.Title>
-                                    <Card.Text className='card-text'>{customers}</Card.Text>
+                                    <Card.Text className='card-text'>{data.totalCustomers}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -21,7 +22,7 @@ const SummaryCard = ({ customers = '10', totalCreditsBought = '25000', usedCredi
                             <Card className="summary-info-card bg-custom2">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Total Credits Bought</Card.Title>
-                                    <Card.Text className='card-text'>{totalCreditsBought}</Card.Text>
+                                    <Card.Text className='card-text'>{data.totalCredits}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -29,7 +30,7 @@ const SummaryCard = ({ customers = '10', totalCreditsBought = '25000', usedCredi
                             <Card className="summary-info-card bg-custom3">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Used Credits</Card.Title>
-                                    <Card.Text className='card-text'>{usedCredits}</Card.Text>
+                                    <Card.Text className='card-text'>{data.usedCredits}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -37,7 +38,7 @@ const SummaryCard = ({ customers = '10', totalCreditsBought = '25000', usedCredi
                             <Card className="summary-info-card bg-custom4">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Invoices Extracted</Card.Title>
-                                    <Card.Text className='card-text'>{invoicesExtracted}</Card.Text>
+                                    <Card.Text className='card-text'>{data.totalInvoiceExtracted}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -45,13 +46,10 @@ const SummaryCard = ({ customers = '10', totalCreditsBought = '25000', usedCredi
                             <Card className="summary-info-card bg-custom5">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Amount Credited</Card.Title>
-                                    <Card.Text className='card-text'><PiCurrencyInr size={20} />{amountCreditsPurchased}</Card.Text>
+                                    <Card.Text className='card-text'><PiCurrencyInr size={20} />{data.totalAmount}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
-                    </Row>
-                    <Row>
-
                     </Row>
                 </Card.Body>
             </Card>

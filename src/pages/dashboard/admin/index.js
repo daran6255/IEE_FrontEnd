@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Row, Col, Nav, Spinner } from 'react-bootstrap';
 
-import Overview from '../../../layouts/overview';
-import Customer from '../../../layouts/customer';
-import { getCustomers } from '../../../stores/thunk';
+import { getCustomers, getDashboardStats } from '../../../stores/thunk';
 
+import SummaryCard from './summarycard';
+import CustomerTable from './customertable';
 import CreditManagement from './creditsmanagement';
 
 const AdminDashboard = () => {
@@ -15,18 +15,21 @@ const AdminDashboard = () => {
     const userData = createSelector(
         (state) => state.Admin,
         (state) => ({
+            stats: state.stats,
             customers: state.customers,
+            loadingStats: state.loadingStats,
             loadingCustomer: state.loadingCustomer,
         })
     );
 
-    const { customers, loadingCustomer } = useSelector(userData);
+    const { stats, customers, loadingStats, loadingCustomer } = useSelector(userData);
 
     const [activeTab, setActiveTab] = useState('Overview');
 
     useEffect(() => {
         switch (activeTab) {
             case 'Overview':
+                dispatch(getDashboardStats());
                 break;
             case 'Customer':
             case 'CreditsManagement':
@@ -52,14 +55,14 @@ const AdminDashboard = () => {
                     </Nav>
                 </Col>
                 <Col sm={12} md={10}>
-                    {activeTab === 'Overview' && <Overview />}
+                    {activeTab === 'Overview' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                        : <SummaryCard data={stats} />)}
                     {activeTab === 'Customer' && (loadingCustomer ?
                         <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
-                        : <Customer data={customers} />)}
+                        : <CustomerTable data={customers} />)}
                     {activeTab === 'CreditsManagement' && (loadingCustomer ?
                         <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
                         : <CreditManagement data={customers} />)}
-                    {/* {activeTab === 'CreditsManagement' && <CreditManagement />} */}
                 </Col>
             </Row>
         </div>
