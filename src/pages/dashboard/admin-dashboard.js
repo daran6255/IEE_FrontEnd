@@ -57,7 +57,10 @@ const AdminDashboard = () => {
                     {activeTab === 'Customer' && (loadingCustomer ?
                         <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
                         : <Customer data={customers} />)}
-                    {activeTab === 'CreditsManagement' && <CreditManagement />}
+                    {activeTab === 'CreditsManagement' && (loadingCustomer ?
+                        <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                        : <CreditManagement data={customers} />)}
+                    {/* {activeTab === 'CreditsManagement' && <CreditManagement />} */}
                 </Col>
             </Row>
         </div>

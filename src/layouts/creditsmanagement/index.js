@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 import { PiCurrencyInr } from "react-icons/pi";
+import moment from 'moment-timezone';
 
-const CreditsTable = () => {
-    const data = {
-        "row1": ['1', 'test-1', '2000', '200'],
-        "row2": ['2', 'test-1', '570', '300'],
-        "row3": ['3', 'test-1', '400', '400'],
-        "row4": ['4', 'test-1', '1800', '500']
-    };
+const CreditsTable = ({ data }) => {
 
     const [showAddModal, setShowAddModal] = useState(false);
     const [showHistoryModal, setShowHistoryModal] = useState(false);
@@ -55,20 +50,12 @@ const CreditsTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(data).map((key) => (
-                        <tr key={key}>
-                            {data[key].map((cell, index) => (
-                                <td key={index}>
-                                    {index === 1 ? (
-                                        <a href="#" onClick={() => (data[key])}>
-                                            {cell}
-                                        </a>
-                                    ) : (
-                                        cell
-                                    )}
-
-                                </td>
-                            ))}
+                    {data.map((item, index) => (
+                        <tr key={item.id}>
+                            <td>{index + 1}</td>
+                            <td>{item.name}</td>
+                            <td>{item.totalCredits}</td>
+                            <td>{item.availableCredits}</td>
                             <td>
                                 <Button variant="info" onClick={handleShowAddModal}>Add Credits</Button>
                             </td>
