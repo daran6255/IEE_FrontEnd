@@ -34,6 +34,9 @@ export const getCreditHistory = (userId) =>
 export const getDashboardStats = () =>
     http.get('/dashboard_stats');
 
+export const addCredits = (data) =>
+    http.post('/add_credits', data);
+
 export const processInvoice = (data) =>
     http.post('/process_invoice', data, { headers: { 'Content-Type': 'multipart/form-data' } });
 

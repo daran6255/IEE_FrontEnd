@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Table, Button, Modal, Form, Spinner } from 'react-bootstrap';
 import { PiCurrencyInr } from "react-icons/pi";
 import moment from 'moment-timezone';
+import { toast } from 'react-toastify';
 
-import { getCreditHistory } from '../../../stores/thunk';
+import { getCreditHistory, addCredits } from '../../../stores/thunk';
 
 const CreditsTable = ({ data }) => {
     const dispatch = useDispatch();
@@ -15,22 +16,34 @@ const CreditsTable = ({ data }) => {
         (state) => ({
             creditsHistory: state.creditsHistory,
             loadingCredits: state.loadingCredits,
+            loadingAddCredits: state.loadingAddCredits,
         })
     );
 
-    const { creditsHistory, loadingCredits } = useSelector(creditsData);
+    const { creditsHistory, loadingCredits, loadingAddCredits } = useSelector(creditsData);
 
     const [showAddModal, setShowAddModal] = useState(false);
     const [showHistoryModal, setShowHistoryModal] = useState(false);
     const [credits, setCredits] = useState('');
+    const [selectedCustomer, setSelectedCustomer] = useState(null);
 
     const handleCloseAddModal = () => setShowAddModal(false);
-    const handleShowAddModal = () => setShowAddModal(true);
+    const handleShowAddModal = (customerId) => {
+        setSelectedCustomer(customerId);
+        setShowAddModal(true);
+    }
 
     const handleCloseHistoryModal = () => setShowHistoryModal(false);
     const handleShowHistoryModal = () => setShowHistoryModal(true);
 
-    const handleAddCredits = () => { };
+    const handleAddCredits = () => {
+        if (selectedCustomer != null && credits > 0) {
+            dispatch(addCredits({ 'userId': selectedCustomer, 'credits': credits }));
+        }
+        else {
+            toast.error('Customer id/credits invalid!');
+        }
+    };
 
     const handleViewHistory = (userId) => {
         dispatch(getCreditHistory(userId));
@@ -51,14 +64,14 @@ const CreditsTable = ({ data }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item, index) => (
+                    {data.length > 0 && data.map((item, index) => (
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{item.name}</td>
                             <td>{item.totalCredits}</td>
                             <td>{item.availableCredits}</td>
                             <td>
-                                <Button variant="info" onClick={handleShowAddModal}>Add Credits</Button>
+                                <Button variant="info" onClick={() => handleShowAddModal(item.id)}>Add Credits</Button>
                             </td>
                             <td>
                                 <Button variant="warning" onClick={() => handleViewHistory(item.id)}>View</Button>
@@ -85,8 +98,8 @@ const CreditsTable = ({ data }) => {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="success" disabled={loadingAddCredits} onClick={handleAddCredits}>{loadingAddCredits ? 'Adding...' : 'Add'}</Button>
                     <Button variant="danger" onClick={handleCloseAddModal}>Cancel</Button>
-                    <Button variant="success" onClick={handleAddCredits}>Add</Button>
                 </Modal.Footer>
             </Modal>
 
