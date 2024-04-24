@@ -6,7 +6,7 @@ import { GrOrganization } from "react-icons/gr";
 import Avatar from 'react-avatar';
 
 
-const ProfileCard = ({ name, company, email, phone, onPasswordChange }) => {
+const ProfileCard = ({ profile, onPasswordChange }) => {
     const [isOldPasswordVisible, setIsOldPasswordVisible] = useState(false);
     const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
 
@@ -24,26 +24,26 @@ const ProfileCard = ({ name, company, email, phone, onPasswordChange }) => {
         <Card className="profile-card shadow" style={{ width: '90%' }}>
             <div className="d-flex flex-column flex-md-row">
                 <div className="p-3">
-                    <Avatar name={name} round size="64" />
+                    <Avatar name={profile.name} round size="64" />
                 </div>
                 <div className="flex-grow-1 p-3">
                     <Card.Body className="text-center">
-                        <Card.Title className="mb-4">{name}</Card.Title>
+                        <Card.Title className="mb-4">{profile.name}</Card.Title>
                         <div className="profile-info">
                             <div className="info-item">
                                 <GrOrganization className="info-icon" />
                                 <span style={{ marginRight: '10px' }} className="info-label">Company: </span>
-                                <span>{company}</span>
+                                <span>{profile.company}</span>
                             </div>
                             <div className="info-item">
                                 <MdOutlineMailOutline className="info-icon" />
                                 <span style={{ marginRight: '10px' }} className="info-label">Email:</span>
-                                <span>{email}</span>
+                                <span>{profile.email}</span>
                             </div>
                             <div className="info-item">
                                 <MdOutlinePhone className="info-icon" />
                                 <span style={{ marginRight: '10px' }} className="info-label">Phone:</span>
-                                <span>{phone}</span>
+                                <span>{profile.phone}</span>
                             </div>
                             <div className="info-item">
                                 <FiKey className="info-icon" />

@@ -10,7 +10,7 @@ import { changePassword } from '../../stores/thunk';
 
 import ProfileCard from './profilecard';
 import SummaryCard from './summarycard';
-import CustomerCreditsHistory from './customercreditshistory';
+import CreditsHistory from './creditshistory';
 
 const UserProfile = () => {
     const dispatch = useDispatch();
@@ -27,28 +27,20 @@ const UserProfile = () => {
 
     const { stats, customers, loadingStats, loadingCustomer } = useSelector(userData);
 
-    const [activeTab, setActiveTab] = useState('Overview');
+    const [activeTab, setActiveTab] = useState('profile');
 
     useEffect(() => {
         switch (activeTab) {
-            case 'Overview':
-                dispatch(getDashboardStats());
+            case 'summary':
+                // dispatch(getCustomers());
                 break;
-            case 'Customer':
-            case 'CreditsManagement':
-                dispatch(getCustomers());
+            case 'creditsHistory':
+                // dispatch(getCustomers());
                 break;
             default:
                 break;
         }
     }, [dispatch, activeTab]);
-
-    const handleTabChange = (tab) => {
-        setActiveTab(tab);
-    };
-    const dispatch = useDispatch();
-
-    const [activeTab, setActiveTab] = useState('MyProfile');
 
     const userSelector = createSelector(
         (state) => state.Auth,
@@ -56,13 +48,8 @@ const UserProfile = () => {
             user: state.user,
         })
     );
-    const { user } = useSelector(userSelector);
 
-    useEffect(() => {
-        if (activeTab) {
-            console.log("Active tab:", activeTab);
-        }
-    }, [activeTab]);
+    const { user } = useSelector(userSelector);
 
     if (!user) {
         return <></>;
@@ -86,38 +73,35 @@ const UserProfile = () => {
         dispatch(changePassword(user.email, oldPassword, newPassword));
     }
 
-
-
-
     return (
-        <>
-            <ProfileNavbar />
+        <React.Fragment>
+            <ProfileNavbar userName={user.name} />
             <div style={{ overflowX: 'hidden' }}>
                 <Row>
                     <Col sm={12} md={2}>
                         <Nav className="flex-column">
                             <Nav.Link onClick={() => handleTabChange('profile')}>My Profile</Nav.Link>
                             <Nav.Link onClick={() => handleTabChange('summary')}>Summary</Nav.Link>
-                            <Nav.Link onClick={() => handleTabChange('CustomerCreditsHistory')}>Credits History</Nav.Link>
+                            <Nav.Link onClick={() => handleTabChange('creditsHistory')}>Credits History</Nav.Link>
                         </Nav>
                     </Col>
                     <Col sm={12} md={10}>
-                        {activeTab === 'profile' && <ProfileCard />}
-                        {activeTab === 'summary' && <SummaryCard />}
-                        {activeTab === 'CustomerCreditsHistory' && <CustomerCreditsHistory />}
+                        {activeTab === 'profile' && <ProfileCard profile={user} onPasswordChange={onPasswordChange} />}
+                        {/* {activeTab === 'summary' && <SummaryCard />} */}
+                        {/* {activeTab === 'creditsHistory' && <CreditsHistory />} */}
 
                         {/* {activeTab === 'profile' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
                             : <ProfileCard data={stats} />)}
                         {activeTab === 'summary' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
                             : <SummaryCard data={stats} />)}
-                        {activeTab === 'CustomerCreditsHistory' && (loadingCustomer ?
+                        {activeTab === 'creditsHistory' && (loadingCustomer ?
                             <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
-                            : <CustomerCreditsHistory data={customers} />)} */}
+                            : <CreditsHistory data={customers} />)} */}
                     </Col>
                 </Row>
             </div>
             <FooterComponent />
-        </>
+        </React.Fragment>
     );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 import moment from 'moment-timezone';
 
-const CustomerCreditsHistory = ({ data }) => {
+const CreditsHistory = ({ data }) => {
     return (
         <div style={{ width: '90%', height: 'auto' }}>
             <Table striped bordered hover responsive="md">
@@ -35,4 +35,4 @@ const CustomerCreditsHistory = ({ data }) => {
     );
 };
 
-export default CustomerCreditsHistory;
+export default CreditsHistory;
