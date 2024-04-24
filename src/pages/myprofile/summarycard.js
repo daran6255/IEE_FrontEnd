@@ -3,7 +3,6 @@ import { Card, Row, Col, Button } from 'react-bootstrap';
 
 
 const SummaryCard = ({ data }) => {
-    console.log(data);
     return (
         <div className="summary-card-container" style={{ width: '90%' }}>
             <Card className="summary-card">
@@ -13,7 +12,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom1">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Total Credits</Card.Title>
-                                    <Card.Text className='card-text'>{data.totalCredits}</Card.Text>
+                                    <Card.Text className='card-text'>{data.totalcredits}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -21,7 +20,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom2">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Used Credits</Card.Title>
-                                    <Card.Text className='card-text'>{data.usedCredits}</Card.Text>
+                                    <Card.Text className='card-text'>{data.totalcredits - data.creditsavailable}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -29,7 +28,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom3">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Available Credits</Card.Title>
-                                    <Card.Text className='card-text'>{data.availableCredits}</Card.Text>
+                                    <Card.Text className='card-text'>{data.creditsavailable}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -37,7 +36,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom4">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Extracted Invoice</Card.Title>
-                                    <Card.Text className='card-text'>{data.totalInvoiceExtracted}</Card.Text>
+                                    <Card.Text className='card-text'>{(data.totalcredits - data.creditsavailable) / 5}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -45,7 +44,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom5">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Remaining Invoice</Card.Title>
-                                    <Card.Text className='card-text'>{data.remainingInvoice}</Card.Text>
+                                    <Card.Text className='card-text'>{data.creditsavailable / 5}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>

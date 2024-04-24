@@ -15,33 +15,6 @@ import CreditsHistory from './creditshistory';
 const UserProfile = () => {
     const dispatch = useDispatch();
 
-    const userData = createSelector(
-        (state) => state.Admin,
-        (state) => ({
-            stats: state.stats,
-            customers: state.customers,
-            loadingStats: state.loadingStats,
-            loadingCustomer: state.loadingCustomer,
-        })
-    );
-
-    const { stats, customers, loadingStats, loadingCustomer } = useSelector(userData);
-
-    const [activeTab, setActiveTab] = useState('profile');
-
-    useEffect(() => {
-        switch (activeTab) {
-            case 'summary':
-                // dispatch(getCustomers());
-                break;
-            case 'creditsHistory':
-                // dispatch(getCustomers());
-                break;
-            default:
-                break;
-        }
-    }, [dispatch, activeTab]);
-
     const userSelector = createSelector(
         (state) => state.Auth,
         (state) => ({
@@ -50,6 +23,24 @@ const UserProfile = () => {
     );
 
     const { user } = useSelector(userSelector);
+
+    // const creditsData = createSelector(
+    //     (state) => state.Customer,
+    //     (state) => ({
+    //         credits: state.credits,
+    //         loadingCredits: state.loadingCredits,
+    //     })
+    // );
+
+    // const { credits, loadingCredits } = useSelector(creditsData);
+
+    const [activeTab, setActiveTab] = useState('profile');
+
+    useEffect(() => {
+        if (activeTab == 'creditsHistory') {
+            // dispatch(getCustomers());
+        }
+    }, [dispatch, activeTab]);
 
     if (!user) {
         return <></>;
@@ -87,7 +78,7 @@ const UserProfile = () => {
                     </Col>
                     <Col sm={12} md={10}>
                         {activeTab === 'profile' && <ProfileCard profile={user} onPasswordChange={onPasswordChange} />}
-                        {/* {activeTab === 'summary' && <SummaryCard />} */}
+                        {activeTab === 'summary' && <SummaryCard data={user} />}
                         {/* {activeTab === 'creditsHistory' && <CreditsHistory />} */}
 
                         {/* {activeTab === 'profile' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
