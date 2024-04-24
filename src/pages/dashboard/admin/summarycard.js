@@ -4,7 +4,6 @@ import { PiCurrencyInr } from "react-icons/pi";
 
 
 const SummaryCard = ({ data }) => {
-    console.log(data);
     return (
         <div className="summary-card-container" style={{ width: '90%' }}>
             <Card className="summary-card">

@@ -35,7 +35,6 @@ export const getDashboardStats = createAsyncThunk(
     async () => {
         try {
             const response = await getDashboardStatsApi();
-            console.log(response);
             return response;
         } catch (error) {
             return error;
