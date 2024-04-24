@@ -5,7 +5,7 @@ import { FiUser } from 'react-icons/fi';
 import { FaPowerOff } from "react-icons/fa";
 
 import logo from '../../assets/images/WVI-Logo.png';
-import './navbarStyles.css'; // Import navbar styles
+import './navbarStyles.css';
 
 const DashBoardNavbar = ({ userName }) => {
     return (

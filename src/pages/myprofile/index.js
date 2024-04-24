@@ -1,17 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { createSelector } from 'reselect';
-import { Row, Col, Nav } from 'react-bootstrap';
+import { Row, Col, Nav, Spinner } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import ProfileNavbar from '../../layouts/profilenav';
 import FooterComponent from '../../layouts/footer';
-import ProfileCard from '../../layouts/profilecard';
-import CreditsCard from '../../layouts/creditscard';
 import { changePassword } from '../../stores/thunk';
 
+import ProfileCard from './profilecard';
+import SummaryCard from './summarycard';
+import CustomerCreditsHistory from './customercreditshistory';
 
 const UserProfile = () => {
+    const dispatch = useDispatch();
+
+    const userData = createSelector(
+        (state) => state.Admin,
+        (state) => ({
+            stats: state.stats,
+            customers: state.customers,
+            loadingStats: state.loadingStats,
+            loadingCustomer: state.loadingCustomer,
+        })
+    );
+
+    const { stats, customers, loadingStats, loadingCustomer } = useSelector(userData);
+
+    const [activeTab, setActiveTab] = useState('Overview');
+
+    useEffect(() => {
+        switch (activeTab) {
+            case 'Overview':
+                dispatch(getDashboardStats());
+                break;
+            case 'Customer':
+            case 'CreditsManagement':
+                dispatch(getCustomers());
+                break;
+            default:
+                break;
+        }
+    }, [dispatch, activeTab]);
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    };
     const dispatch = useDispatch();
 
     const [activeTab, setActiveTab] = useState('MyProfile');
@@ -53,22 +87,32 @@ const UserProfile = () => {
     }
 
 
+
+
     return (
         <>
             <ProfileNavbar />
-            <div style={{ overflowX: 'hidden' }}> {/* Ensure horizontal overflow is hidden */}
+            <div style={{ overflowX: 'hidden' }}>
                 <Row>
                     <Col sm={12} md={2}>
-                        {/* Left column with profile and credits options */}
                         <Nav className="flex-column">
-                            <Nav.Link onClick={() => handleTabChange('MyProfile')}>My Profile</Nav.Link>
-                            <Nav.Link onClick={() => handleTabChange('Credits')}>Credits</Nav.Link>
+                            <Nav.Link onClick={() => handleTabChange('profile')}>My Profile</Nav.Link>
+                            <Nav.Link onClick={() => handleTabChange('summary')}>Summary</Nav.Link>
+                            <Nav.Link onClick={() => handleTabChange('CustomerCreditsHistory')}>Credits History</Nav.Link>
                         </Nav>
                     </Col>
                     <Col sm={12} md={10}>
-                        {/* Right column - Render ProfileCard or CreditsCard based on activeTab */}
-                        {activeTab === 'MyProfile' && <ProfileCard name={user.name} company={user.company} email={user.email} phone={user.phone} onPasswordChange={onPasswordChange} />}
-                        {activeTab === 'Credits' && <CreditsCard />}
+                        {activeTab === 'profile' && <ProfileCard />}
+                        {activeTab === 'summary' && <SummaryCard />}
+                        {activeTab === 'CustomerCreditsHistory' && <CustomerCreditsHistory />}
+
+                        {/* {activeTab === 'profile' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                            : <ProfileCard data={stats} />)}
+                        {activeTab === 'summary' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                            : <SummaryCard data={stats} />)}
+                        {activeTab === 'CustomerCreditsHistory' && (loadingCustomer ?
+                            <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                            : <CustomerCreditsHistory data={customers} />)} */}
                     </Col>
                 </Row>
             </div>
