@@ -14,7 +14,7 @@ import PageNotFound from '../pages/others/errors/PageNotFound';
 const authProtectedRoutes = [
     { path: '/dashboard', component: <DashboardPage />, roles: ['admin', 'customer'] },
     { path: '/my-profile', component: <UserProfile />, roles: ['customer'] },
-    { path: '/buy-credits', component: <BuyCredits />, roles: ['customer'] },
+
 
     // this route must be at the end
     { path: '/', exact: true, component: <Navigate to='/dashboard' />, roles: ['admin', 'customer'] },
@@ -27,7 +27,7 @@ const publicRoutes = [
     { path: '/signup', component: <Signup /> },
     { path: '/logout', component: <Logout /> },
     { path: '/verify-email/:token', component: <VerifyEmail /> },
-
+    { path: '/buy-credits', component: <BuyCredits />, roles: ['customer'] },
     // Other routes
     { path: '/page-not-found', component: <PageNotFound /> },
 ]
