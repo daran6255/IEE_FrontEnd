@@ -11,12 +11,9 @@ const AuthProtected = ({ children, roles }) => {
     const { userProfile, loading, token } = useProfile();
 
     useEffect(() => {
-        if (userProfile) {
-            dispatch(updateUser(userProfile));
-        }
-
         if (userProfile && !loading && token) {
             setAuthorization(token);
+            dispatch(updateUser(userProfile));
         } else if (!userProfile && loading) {
             dispatch(logoutUser());
         }

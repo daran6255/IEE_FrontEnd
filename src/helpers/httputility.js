@@ -8,7 +8,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const userAuth = sessionStorage.getItem('userAuth');
 const token = JSON.parse(userAuth) ? JSON.parse(userAuth).accessToken : null;
-if (token) axios.defaults.headers.common['Authorization'] = token;
+if (token) axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
 axios.interceptors.response.use(
     function (response) {
@@ -35,7 +35,7 @@ axios.interceptors.response.use(
 );
 
 const setAuthorization = (newToken) => {
-    axios.defaults.headers.common['Authorization'] = newToken;
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + newToken;
 };
 
 class HttpUtility {
