@@ -41,7 +41,7 @@ const UserProfile = () => {
         if (activeTab === 'creditsHistory') {
             dispatch(getCreditHistory(user.id));
         }
-    }, [dispatch, activeTab]);
+    }, [dispatch, activeTab, user]);
 
     if (!user) {
         return <></>;
