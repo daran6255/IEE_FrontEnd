@@ -22,8 +22,8 @@ export const getCustomers = createAsyncThunk(
     }
 );
 
-export const getCreditHistory = createAsyncThunk(
-    'invoice/getCreditHistory',
+export const getCustomerCreditHistory = createAsyncThunk(
+    'invoice/getCustomerCreditHistory',
     async (userId) => {
         try {
             const response = await getCreditHistoryApi(userId);

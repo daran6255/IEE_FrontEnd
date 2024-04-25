@@ -12,6 +12,8 @@ import ProfileCard from './profilecard';
 import SummaryCard from './summarycard';
 import CreditsHistory from './creditshistory';
 
+import { getCreditHistory } from '../../stores/thunk';
+
 const UserProfile = () => {
     const dispatch = useDispatch();
 
@@ -22,23 +24,22 @@ const UserProfile = () => {
         })
     );
 
+    const creditsData = createSelector(
+        (state) => state.Customer,
+        (state) => ({
+            creditsHistory: state.creditsHistory,
+            loadingCredits: state.loadingCredits,
+        })
+    );
+
     const { user } = useSelector(userSelector);
-
-    // const creditsData = createSelector(
-    //     (state) => state.Customer,
-    //     (state) => ({
-    //         credits: state.credits,
-    //         loadingCredits: state.loadingCredits,
-    //     })
-    // );
-
-    // const { credits, loadingCredits } = useSelector(creditsData);
+    const { creditsHistory, loadingCredits } = useSelector(creditsData);
 
     const [activeTab, setActiveTab] = useState('profile');
 
     useEffect(() => {
-        if (activeTab == 'creditsHistory') {
-            // dispatch(getCustomers());
+        if (activeTab === 'creditsHistory') {
+            dispatch(getCreditHistory(user.id));
         }
     }, [dispatch, activeTab]);
 
@@ -79,15 +80,9 @@ const UserProfile = () => {
                     <Col sm={12} md={10}>
                         {activeTab === 'profile' && <ProfileCard profile={user} onPasswordChange={onPasswordChange} />}
                         {activeTab === 'summary' && <SummaryCard data={user} />}
-                        {/* {activeTab === 'creditsHistory' && <CreditsHistory />} */}
-
-                        {/* {activeTab === 'profile' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
-                            : <ProfileCard data={stats} />)}
-                        {activeTab === 'summary' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
-                            : <SummaryCard data={stats} />)}
-                        {activeTab === 'creditsHistory' && (loadingCustomer ?
+                        {activeTab === 'creditsHistory' && (loadingCredits ?
                             <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
-                            : <CreditsHistory data={customers} />)} */}
+                            : <CreditsHistory credits={creditsHistory} />)}
                     </Col>
                 </Row>
             </div>

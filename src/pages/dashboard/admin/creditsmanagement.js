@@ -6,7 +6,7 @@ import { PiCurrencyInr } from "react-icons/pi";
 import moment from 'moment-timezone';
 import { toast } from 'react-toastify';
 
-import { getCreditHistory, addCredits } from '../../../stores/thunk';
+import { getCustomerCreditHistory, addCredits } from '../../../stores/thunk';
 
 const CreditsTable = ({ data }) => {
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const CreditsTable = ({ data }) => {
     };
 
     const handleViewHistory = (userId) => {
-        dispatch(getCreditHistory(userId));
+        dispatch(getCustomerCreditHistory(userId));
         handleShowHistoryModal();
     };
 
