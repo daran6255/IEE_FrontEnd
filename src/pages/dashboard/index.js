@@ -29,7 +29,7 @@ const DashboardPage = () => {
 
     ) : (
       <React.Fragment>
-        <DashBoardNavbar userName={user.name} />
+        <DashBoardNavbar userName={user.name} credits={user.creditsavailable} />
         <CustomerDashboard />
         <FooterComponent />
       </React.Fragment>
