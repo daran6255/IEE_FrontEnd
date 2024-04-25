@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-    getCustomers, getCreditHistory, getDashboardStats, addCredits
+    getCustomers, getCustomerCreditHistory, getDashboardStats
 } from './thunk';
 
 export const initialState = {
@@ -52,14 +52,14 @@ const adminSlice = createSlice({
             state.loading = false;
         });
 
-        builder.addCase(getCreditHistory.pending, (state) => {
+        builder.addCase(getCustomerCreditHistory.pending, (state) => {
             state.loadingCredits = true;
         });
-        builder.addCase(getCreditHistory.fulfilled, (state, action) => {
+        builder.addCase(getCustomerCreditHistory.fulfilled, (state, action) => {
             state.creditsHistory = action.payload;
             state.loadingCredits = false;
         });
-        builder.addCase(getCreditHistory.rejected, (state, action) => {
+        builder.addCase(getCustomerCreditHistory.rejected, (state, action) => {
             state.error = action.payload || null;
             state.loadingCredits = false;
         });

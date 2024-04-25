@@ -7,7 +7,7 @@ import { FaPowerOff } from "react-icons/fa";
 import logo from '../../assets/images/WVI-Logo.png';
 import './navbarStyles.css';
 
-const DashBoardNavbar = ({ userName }) => {
+const DashBoardNavbar = ({ userName, credits }) => {
     return (
         <Navbar bg="transparent" expand="lg">
             <Container>
@@ -23,8 +23,8 @@ const DashBoardNavbar = ({ userName }) => {
                         <Nav.Item className="credits-container">
                             <Nav.Link href="#">
                                 <span className="me-2">Credits</span>
+                                <span style={{ color: 'blue' }}>{credits}</span> {' '}
                                 <GiCoins className="me-2" />
-                                <span>100</span> {/* Replace with dynamic credits value */}
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
