@@ -1,14 +1,12 @@
-import PropTypes from 'prop-types';
-
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import NavBarComponent from '../../layouts/navbar';
 import Banner from '../../assets/images/ai.png';
 import svgimage1 from '../../assets/images/data-extraction.jpg';
 import svgimage2 from '../../assets/images/12977758_5107041.jpg';
 import svgimage3 from '../../assets/images/13338131_5214651.jpg';
-import { FaLayerGroup, FaListAlt, FaTable, FaFileExcel, FaFileJson, FaUserCog, FaDownload, FaCreditCard, FaLock } from 'react-icons/fa';
+import { FaLayerGroup, FaListAlt, FaTable } from 'react-icons/fa';
 import { GoIssueClosed } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaUser, FaPaperPlane } from 'react-icons/fa';
@@ -44,7 +42,7 @@ const Home = () => {
           {/* First Row */}
           <Row className="align-items-center mb-4">
             <Col md={6}>
-              <img src={svgimage1} alt="OCR Product Image" className="product-image img-fluid" />
+              <img src={svgimage1} alt="OCR Product" className="product-image img-fluid" />
             </Col>
             <Col md={6}>
               <div>
@@ -65,14 +63,14 @@ const Home = () => {
               </div>
             </Col>
             <Col md={6}>
-              <img src={svgimage2} alt="Entity Extraction Product Image" className="product-image img-fluid" />
+              <img src={svgimage2} alt="Entity Extraction Product" className="product-image img-fluid" />
             </Col>
           </Row>
 
           {/* Third Row */}
           <Row className="align-items-center">
             <Col md={6}>
-              <img src={svgimage3} alt="Table Extraction Product Image" className="product-image img-fluid" />
+              <img src={svgimage3} alt="Table Extraction Product" className="product-image img-fluid" />
             </Col>
             <Col md={6}>
               <div>
@@ -173,11 +171,11 @@ const Home = () => {
       <section className="pricing-section mt-5 mb-10">
         <Container>
           <h2 className="section-heading text-center mb-5">Pricing</h2>
-          <div class="pricing">
-            <div class="plan">
+          <div className="pricing">
+            <div className="plan">
               <h2>Trial</h2>
-              <div class="price">Free</div>
-              <ul class="features">
+              <div className="price">Free</div>
+              <ul className="features">
                 <li><GoIssueClosed color='green' /> 50 credits</li>
                 <li><GoIssueClosed color='green' /> 1 User</li>
                 <li><GoIssueClosed color='green' /> 10 Invoivce</li>
@@ -186,11 +184,11 @@ const Home = () => {
               </ul>
               <button>Try Now</button>
             </div>
-            <div class="plan popular">
+            <div className="plan popular">
               <span>Most Popular</span>
               <h2>Standard</h2>
-              <div class="price">$10/month</div>
-              <ul class="features">
+              <div className="price">$10/month</div>
+              <ul className="features">
                 <li><GoIssueClosed color='green' /> Unlimited Websites</li>
                 <li><GoIssueClosed color='green' /> 5 Users</li>
                 <li><GoIssueClosed color='green' /> 512MB Space/website</li>
@@ -199,10 +197,10 @@ const Home = () => {
               </ul>
               <button>Sign In</button>
             </div>
-            <div class="plan">
+            <div className="plan">
               <h2>Enterprise</h2>
-              <div class="price">Custom plan</div>
-              <ul class="features">
+              <div className="price">Custom plan</div>
+              <ul className="features">
                 <li><GoIssueClosed color='green' /> Unlimited Websites</li>
                 <li><GoIssueClosed color='green' /> Unlimited Users</li>
                 <li><GoIssueClosed color='green' /> Unlimited Space/website</li>
