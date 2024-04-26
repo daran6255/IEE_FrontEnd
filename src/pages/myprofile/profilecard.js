@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Card, Container, Form, Modal, InputGroup } from 'react-bootstrap';
-import { FiKey, FiEye, FiEyeOff } from 'react-icons/fi';
+import { Button, Card, Container, Form, Modal } from 'react-bootstrap';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { MdOutlinePhone, MdOutlineMailOutline } from "react-icons/md";
 import { GrOrganization } from "react-icons/gr";
 import Avatar from 'react-avatar';
@@ -12,7 +12,6 @@ const ProfileCard = ({ profile, onPasswordChange }) => {
 
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
 
     const toggleOldPasswordVisibility = () => setIsOldPasswordVisible(!isOldPasswordVisible);
     const toggleNewPasswordVisibility = () => setIsNewPasswordVisible(!isNewPasswordVisible);

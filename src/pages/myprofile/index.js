@@ -12,7 +12,7 @@ import ProfileCard from './profilecard';
 import SummaryCard from './summarycard';
 import CreditsHistory from './creditshistory';
 
-import { getCreditHistory } from '../../stores/thunk';
+import { getCustomerData, getCreditHistory } from '../../stores/thunk';
 
 const UserProfile = () => {
     const dispatch = useDispatch();
@@ -32,14 +32,30 @@ const UserProfile = () => {
         })
     );
 
+    const customerData = createSelector(
+        (state) => state.Customer,
+        (state) => ({
+            userData: state.userData,
+            loadingData: state.loadingData,
+        })
+    );
+
     const { user } = useSelector(userSelector);
+    const { userData, loadingData } = useSelector(customerData);
     const { creditsHistory, loadingCredits } = useSelector(creditsData);
 
     const [activeTab, setActiveTab] = useState('profile');
 
     useEffect(() => {
-        if (activeTab === 'creditsHistory') {
-            dispatch(getCreditHistory(user.id));
+        switch (activeTab) {
+            case 'summary':
+                dispatch(getCustomerData());
+                break;
+            case 'creditsHistory':
+                dispatch(getCreditHistory(user.id));
+                break;
+            default:
+                break;
         }
     }, [dispatch, activeTab, user]);
 
@@ -94,7 +110,9 @@ const UserProfile = () => {
                     </Col>
                     <Col sm={12} md={10}>
                         {activeTab === 'profile' && <ProfileCard profile={user} onPasswordChange={onPasswordChange} />}
-                        {activeTab === 'summary' && <SummaryCard data={user} />}
+                        {activeTab === 'summary' && (loadingData ?
+                            <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /></div>
+                            : <SummaryCard data={userData} />)}
                         {activeTab === 'creditsHistory' && (loadingCredits ?
                             <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /></div>
                             : <CreditsHistory credits={creditsHistory} />)}

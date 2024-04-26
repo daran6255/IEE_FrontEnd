@@ -25,6 +25,9 @@ export const verifyUser = (token) =>
 export const updatePassword = (data) =>
     http.post('/update_password', data);
 
+export const getCustomerData = () =>
+    http.get('/get_customer_data');
+
 export const getCustomers = () =>
     http.get('/get_customers',);
 

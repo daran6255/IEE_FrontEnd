@@ -14,8 +14,7 @@ import {
     loginSuccess,
     registerSuccess,
     logoutSuccess,
-    verificationSuccess,
-    updateCredits
+    verificationSuccess
 } from './reducer';
 
 export const loginUser = (user, history) => async (dispatch) => {
@@ -143,18 +142,6 @@ export const changePassword = (email, oldPassword, newPassword) => async (dispat
 export const updateUser = (user) => async (dispatch) => {
     try {
         dispatch(loginSuccess(user));
-    } catch (error) {
-        dispatch(apiError(error));
-    }
-};
-
-export const updateAvailableCredits = (credits) => async (dispatch) => {
-    try {
-        const user = sessionStorage.getItem('userAuth');
-        const newUser = JSON.parse(user);
-        newUser.creditsavailable = credits;
-        sessionStorage.setItem('userAuth', JSON.stringify(newUser));
-        dispatch(updateCredits(credits));
     } catch (error) {
         dispatch(apiError(error));
     }

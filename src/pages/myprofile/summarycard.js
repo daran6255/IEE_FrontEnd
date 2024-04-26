@@ -12,7 +12,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom1">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Total Credits</Card.Title>
-                                    <Card.Text className='card-text'>{data.totalcredits}</Card.Text>
+                                    <Card.Text className='card-text'>{data.totalCredits}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -20,7 +20,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom2">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Used Credits</Card.Title>
-                                    <Card.Text className='card-text'>{data.totalcredits - data.creditsavailable}</Card.Text>
+                                    <Card.Text className='card-text'>{data.usedCredits}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -28,7 +28,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom3">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Available Credits</Card.Title>
-                                    <Card.Text className='card-text'>{data.creditsavailable}</Card.Text>
+                                    <Card.Text className='card-text'>{data.availableCredits}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -36,7 +36,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom4">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Extracted Invoice</Card.Title>
-                                    <Card.Text className='card-text'>{(data.totalcredits - data.creditsavailable) / 5}</Card.Text>
+                                    <Card.Text className='card-text'>{data.invoiceExtracted}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -44,7 +44,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom5">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Remaining Invoice</Card.Title>
-                                    <Card.Text className='card-text'>{data.creditsavailable / 5}</Card.Text>
+                                    <Card.Text className='card-text'>{data.remainingInvoices}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>

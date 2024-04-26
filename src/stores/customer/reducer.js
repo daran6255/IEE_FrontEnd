@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getCreditHistory } from './thunk';
+import { getCustomerData, getCreditHistory } from './thunk';
 
 export const initialState = {
     creditsHistory: [],
+    userData: {},
+    loadingData: false,
     loadingCredits: false,
     error: '',
 };
@@ -13,6 +15,18 @@ const customerSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(getCustomerData.pending, (state) => {
+            state.loadingData = true;
+        });
+        builder.addCase(getCustomerData.fulfilled, (state, action) => {
+            state.userData = action.payload;
+            state.loadingData = false;
+        });
+        builder.addCase(getCustomerData.rejected, (state, action) => {
+            state.error = action.payload || null;
+            state.loadingData = false;
+        });
+
         builder.addCase(getCreditHistory.pending, (state) => {
             state.loadingCredits = true;
         });

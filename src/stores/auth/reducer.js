@@ -38,12 +38,6 @@ const authSlice = createSlice({
         verificationSuccess(state) {
             state.verified = true;
         },
-
-        updateCredits(state, action) {
-            if (state.user) {
-                state.user.creditsavailable = action.payload;
-            }
-        }
     },
 });
 
@@ -54,8 +48,7 @@ export const {
     loginSuccess,
     registerSuccess,
     logoutSuccess,
-    verificationSuccess,
-    updateCredits
+    verificationSuccess
 } =
     authSlice.actions;
 

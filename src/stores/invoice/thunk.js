@@ -9,7 +9,7 @@ import {
 
 import { invoiceProcessStarted, invoiceProcessSuccess, apiError, reset_invoice } from './reducer';
 
-import { updateAvailableCredits } from '../auth/thunk';
+import { getCustomerData } from '../customer/thunk';
 
 export const processInvoice = (invoices) => async (dispatch) => {
     dispatch(invoiceProcessStarted());
@@ -24,7 +24,7 @@ export const processInvoice = (invoices) => async (dispatch) => {
             if (response.status === 'success' && response.result.output) {
                 toast.success('Processed Invoice Successfully', { autoClose: 3000 });
                 dispatch(invoiceProcessSuccess(response.result));
-                dispatch(updateAvailableCredits(response.result.availableCredits));
+                dispatch(getCustomerData());
                 return;
             }
             else {
