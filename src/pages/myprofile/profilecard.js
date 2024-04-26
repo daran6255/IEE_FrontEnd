@@ -18,7 +18,7 @@ const ProfileCard = ({ profile, onPasswordChange }) => {
     const toggleModal = () => setShowModal(!showModal);
 
     return (
-        <Card className="profile-card shadow" style={{ width: '50%' }}>
+        <Card className="profile-card shadow" style={{ width: '90%' }}>
             <Card.Body>
                 <div className='greetings'>
                     <h3>Welcome Back !</h3>
