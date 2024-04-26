@@ -1,4 +1,3 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 
@@ -8,21 +7,39 @@ import {
     downloadJson as downloadJsonAPI,
 } from '../../helpers/backend_helper';
 
-import { reset_invoice } from './reducer';
+import { invoiceProcessStarted, invoiceProcessSuccess, apiError, reset_invoice } from './reducer';
 
-export const processInvoice = createAsyncThunk(
-    'invoice/processInvoice',
-    async (invoices) => {
-        try {
-            const response = await processInvoiceApi(invoices);
-            toast.success('Processed Invoice Successfully', { autoClose: 3000 });
-            return response;
-        } catch (error) {
-            toast.error('Invoice Processing Failed', { autoClose: 3000 });
-            return error;
+import { updateAvailableCredits } from '../auth/thunk';
+
+export const processInvoice = (invoices) => async (dispatch) => {
+    dispatch(invoiceProcessStarted());
+
+    try {
+        const response = await processInvoiceApi(invoices);
+
+        const result = response.result;
+        let message = 'Invoice Processing Failed';
+
+        if (result) {
+            if (response.status === 'success' && response.result.output) {
+                toast.success('Processed Invoice Successfully', { autoClose: 3000 });
+                dispatch(invoiceProcessSuccess(response.result));
+                dispatch(updateAvailableCredits(response.result.availableCredits));
+                return;
+            }
+            else {
+                message = result;
+            }
         }
+
+        toast.error(message, { autoClose: 3000 });
+        dispatch(apiError(message));
+    } catch (error) {
+        toast.error(error, { autoClose: 3000 });
+        dispatch(apiError(error));
     }
-);
+}
+
 
 export const downloadExcel = (requestId) => async (dispatch) => {
     try {
