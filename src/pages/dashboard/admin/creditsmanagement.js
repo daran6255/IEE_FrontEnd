@@ -64,7 +64,7 @@ const CreditsTable = ({ data }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.length > 0 && data.map((item, index) => (
+                    {Array.isArray(data) && data.length > 0 && data.map((item, index) => (
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{item.name}</td>
@@ -109,7 +109,7 @@ const CreditsTable = ({ data }) => {
                     <Modal.Title>Credits Purchase History</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {creditsHistory.length > 0 ? (loadingCredits ? <Spinner animation="border" /> :
+                    {Array.isArray(creditsHistory) && creditsHistory.length > 0 ? (loadingCredits ? <Spinner animation="border" /> :
                         <Table striped bordered hover responsive>
                             <thead>
                                 <tr>

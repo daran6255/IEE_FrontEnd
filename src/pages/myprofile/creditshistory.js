@@ -6,7 +6,7 @@ import { PiCurrencyInr } from "react-icons/pi";
 const CreditsHistory = ({ credits }) => {
     return (
         <div style={{ width: '90%', height: 'auto' }}>
-            {credits.length > 0 ?
+            {Array.isArray(credits) && credits.length > 0 ?
                 <Table striped bordered hover responsive>
                     <thead>
                         <tr>

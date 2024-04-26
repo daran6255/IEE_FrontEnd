@@ -130,7 +130,7 @@ const CustomerDashboard = () => {
                         </Col>
                     </Row>
                     <Col className="box-cell-ImagePreview text-center">
-                        {selectedFiles.length > 0 ?
+                        {selectedFiles && selectedFiles.length > 0 ?
                             <>
                                 <Row>
                                     <Carousel controls={true} interval={null} onSelect={handleSelect}>

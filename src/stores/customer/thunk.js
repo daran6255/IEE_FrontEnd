@@ -6,7 +6,7 @@ import {
 
 
 export const getCreditHistory = createAsyncThunk(
-    'invoice/getCreditHistory',
+    'customer/getCreditHistory',
     async (userId) => {
         try {
             const response = await getCreditHistoryApi(userId);
