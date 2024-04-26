@@ -25,18 +25,18 @@ const SummaryCard = ({ data }) => {
                             </Card>
                         </Col>
                         <Col md={6} lg={3}>
-                            <Card className="summary-info-card bg-custom3">
-                                <Card.Body>
-                                    <Card.Title className='card-title'>Available Credits</Card.Title>
-                                    <Card.Text className='card-text'>{data.availableCredits}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={6} lg={3}>
                             <Card className="summary-info-card bg-custom4">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Extracted Invoice</Card.Title>
                                     <Card.Text className='card-text'>{data.invoiceExtracted}</Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={6} lg={3}>
+                            <Card className="summary-info-card bg-custom3">
+                                <Card.Body>
+                                    <Card.Title className='card-title'>Available Credits</Card.Title>
+                                    <Card.Text className='card-text'>{data.availableCredits}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -50,6 +50,14 @@ const SummaryCard = ({ data }) => {
                         </Col>
                         <Col md={6} lg={3}>
                             <Card className="summary-info-card bg-custom6">
+                                <Card.Body>
+                                    <Card.Title className='card-title'>Total Amount</Card.Title>
+                                    <Card.Text className='card-text'>{data.totalAmount}</Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md={6} lg={3}>
+                            <Card className="summary-info-card bg-custom7">
                                 <Card.Body>
                                     <Card.Title className="card-title">Buy Credits</Card.Title>
                                     <div className="button-center">

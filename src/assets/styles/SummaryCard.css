@@ -28,26 +28,36 @@
 
 .bg-custom1 {
     border-color: #ff6b6b; /* Light Red */
+    box-shadow: 0 2px 4px #ff6b6b;
 }
 
 .bg-custom2 {
     border-color: #48dbfb; /* Sky Blue */
+    box-shadow: 0 2px 4px  #48dbfb;
 }
 
 .bg-custom3 {
     border-color: #feca57; /* Yellow */
+    box-shadow: 0 2px 4px  #feca57;
 }
 
 .bg-custom4 {
     border-color: #8078fe; /* Purple */
+    box-shadow: 0 2px 4px  #8078fe;
 }
 
 .bg-custom5 {
     border-color: #1dd1a1; /* Green */
+    box-shadow: 0 2px 4px  #1dd1a1;
 }
 
 .bg-custom6 {
-    border-color: #520000; /* Green */
+    border-color: #520000;
+    box-shadow: 0 2px 4px  #520000;
+}
+.bg-custom7 {
+    border-color: #ea12d8;
+    box-shadow: 0 2px 4px  #ea12d8;
 }
 
 .card-title {
