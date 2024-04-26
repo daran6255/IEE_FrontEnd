@@ -16,12 +16,14 @@ axios.interceptors.response.use(
     },
     function (error) {
         let message;
-        switch (error.status) {
+        switch (error.response.status) {
             case 500:
                 message = 'Internal Server Error';
                 break;
             case 401:
                 message = 'Invalid credentials';
+                sessionStorage.removeItem('userAuth');
+                window.location.href = '/logout';
                 break;
             case 404:
                 message =
