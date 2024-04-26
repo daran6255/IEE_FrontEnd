@@ -27,6 +27,8 @@ const DashBoardNavbar = ({ userName }) => {
                                     <FiUser size={24} className="user-icon" />
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
+                                    <Dropdown.Item href="/my-profile">My Profile</Dropdown.Item>
+                                    <Dropdown.Item href="#">Buy Credits</Dropdown.Item>
                                     <Dropdown.Item href={process.env.PUBLIC_URL + '/logout'}>
                                         <FaPowerOff style={{ color: 'red' }} />&nbsp;
                                         <span>

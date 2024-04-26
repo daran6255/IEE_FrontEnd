@@ -70,18 +70,33 @@ const UserProfile = () => {
             <ProfileNavbar userName={user.name} />
             <div style={{ overflowX: 'hidden' }}>
                 <Row>
-                    <Col sm={12} md={2}>
+                    <Col sm={12} md={2} className="nav-column">
                         <Nav className="flex-column">
-                            <Nav.Link onClick={() => handleTabChange('profile')}>My Profile</Nav.Link>
-                            <Nav.Link onClick={() => handleTabChange('summary')}>Summary</Nav.Link>
-                            <Nav.Link onClick={() => handleTabChange('creditsHistory')}>Credits History</Nav.Link>
+                            <Nav.Link
+                                onClick={() => handleTabChange('profile')}
+                                className={activeTab === 'profile' ? 'active-tab' : ''}
+                            >
+                                My Profile
+                            </Nav.Link>
+                            <Nav.Link
+                                onClick={() => handleTabChange('summary')}
+                                className={activeTab === 'summary' ? 'active-tab' : ''}
+                            >
+                                Summary
+                            </Nav.Link>
+                            <Nav.Link
+                                onClick={() => handleTabChange('creditsHistory')}
+                                className={activeTab === 'creditsHistory' ? 'active-tab' : ''}
+                            >
+                                Credits History
+                            </Nav.Link>
                         </Nav>
                     </Col>
                     <Col sm={12} md={10}>
                         {activeTab === 'profile' && <ProfileCard profile={user} onPasswordChange={onPasswordChange} />}
                         {activeTab === 'summary' && <SummaryCard data={user} />}
                         {activeTab === 'creditsHistory' && (loadingCredits ?
-                            <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                            <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /></div>
                             : <CreditsHistory credits={creditsHistory} />)}
                     </Col>
                 </Row>

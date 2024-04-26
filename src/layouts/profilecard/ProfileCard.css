@@ -1,35 +1,40 @@
+/* ProfileCard.css */
 .profile-card {
-    margin: 10px !important;
-    border-radius: 15px;
-    transition: transform 0.3s ease-in-out;
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.profile-card:hover {
-    transform: translateY(-5px);
+.avatar, .user-name {
+    margin-top: 10px;
 }
 
-.profile-info {
-    text-align: left;
-    margin-bottom: 20px;
+.info-icon {
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 .info-item {
     display: flex;
+    justify-content: center;
     align-items: center;
+    margin: 10px 0;
+}
+
+.password-form {
+    margin-top: 20px;
+}
+
+.view-password-icon {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.password-form .form-control {
     margin-bottom: 10px;
 }
-.info-icon {
-    margin-right: 10px;
-}
 
-.passContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border: 1px solid rgb(215, 214, 214);
-    padding: 10px;
-}
-
-.pass-update {
-    text-align: center;
+.password-form .btn {
+    margin-top: 10px;
 }

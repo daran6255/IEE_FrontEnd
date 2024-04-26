@@ -14,12 +14,12 @@
 }
 
 .summary-info-card {
-    background-color: #f8f9fa;
+    background-color: #fff; /* Set background to white or transparent */
     margin-bottom: 20px;
-    border: none;
+    border: 2px solid transparent; /* Default invisible border, overridden below */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Add transition for border color */
 }
 
 .summary-info-card:hover {
@@ -27,32 +27,41 @@
 }
 
 .bg-custom1 {
-    background-color: #ff6b6b; /* Red */
+    border-color: #ff6b6b; /* Light Red */
 }
 
 .bg-custom2 {
-    background-color: #48dbfb; /* Sky Blue */
+    border-color: #48dbfb; /* Sky Blue */
 }
 
 .bg-custom3 {
-    background-color: #feca57; /* Yellow */
+    border-color: #feca57; /* Yellow */
 }
 
 .bg-custom4 {
-    background-color: #8078fe; /* Purple */
+    border-color: #8078fe; /* Purple */
 }
 
 .bg-custom5 {
-    background-color: #1dd1a1; /* Green */
+    border-color: #1dd1a1; /* Green */
 }
 
-.card-title{
+.bg-custom6 {
+    border-color: #520000; /* Green */
+}
+
+.card-title {
     font-size: 15px !important;
     text-align: center;
 }
 
-.card-text{
+.card-text {
     font-size: 25px !important;
     font-weight: bolder;
     text-align: center;
+}
+.button-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

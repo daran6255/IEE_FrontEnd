@@ -49,10 +49,12 @@ const SummaryCard = ({ data }) => {
                             </Card>
                         </Col>
                         <Col md={6} lg={3}>
-                            <Card className="summary-info-card bg-custom5">
+                            <Card className="summary-info-card bg-custom6">
                                 <Card.Body>
-                                    <Card.Title>Buy Credits</Card.Title>
-                                    <Button variant="outline-primary" className="mt-auto">Buy Credits</Button>
+                                    <Card.Title className="card-title">Buy Credits</Card.Title>
+                                    <div className="button-center">
+                                        <Button variant="outline-primary">Buy Credits</Button>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </Col>

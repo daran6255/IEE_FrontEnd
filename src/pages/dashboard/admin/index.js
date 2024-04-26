@@ -47,11 +47,26 @@ const AdminDashboard = () => {
     return (
         <div style={{ overflowX: 'hidden' }}>
             <Row>
-                <Col sm={12} md={2}>
+                <Col sm={12} md={2} className="nav-column">
                     <Nav className="flex-column">
-                        <Nav.Link onClick={() => handleTabChange('Overview')}>Overview</Nav.Link>
-                        <Nav.Link onClick={() => handleTabChange('Customer')}>Customers</Nav.Link>
-                        <Nav.Link onClick={() => handleTabChange('CreditsManagement')}>Credits Management</Nav.Link>
+                        <Nav.Link
+                            onClick={() => handleTabChange('Overview')}
+                            className={activeTab === 'Overview' ? 'active-tab' : ''}
+                        >
+                            My Overview
+                        </Nav.Link>
+                        <Nav.Link
+                            onClick={() => handleTabChange('Customer')}
+                            className={activeTab === 'Customer' ? 'active-tab' : ''}
+                        >
+                            Customers
+                        </Nav.Link>
+                        <Nav.Link
+                            onClick={() => handleTabChange('CreditsManagement')}
+                            className={activeTab === 'CreditsManagement' ? 'active-tab' : ''}
+                        >
+                            Credits Management
+                        </Nav.Link>
                     </Nav>
                 </Col>
                 <Col sm={12} md={10}>

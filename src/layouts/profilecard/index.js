@@ -23,13 +23,14 @@ const ProfileCard = ({ name, company, email, phone, onPasswordChange }) => {
 
     return (
         <Card className="profile-card shadow" style={{ width: '90%' }}>
-            <div className="d-flex flex-column flex-md-row">
-                <div className="p-3">
+            <div className="d-flex flex-column flex-md-row align-items-center">
+                <div className="p-3 text-center">
                     <Avatar name={name} round size="64" />
+                    <Card.Title className="mb-2 user-name">{name}</Card.Title>
                 </div>
                 <div className="flex-grow-1 p-3">
                     <Card.Body className="text-center">
-                        <Card.Title className="mb-4">{name}</Card.Title>
+
                         <div className="profile-info">
                             <div className="info-item">
                                 <GrOrganization className="info-icon" />

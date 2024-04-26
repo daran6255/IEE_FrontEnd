@@ -54,7 +54,7 @@ const CreditsTable = ({ data }) => {
         <div style={{ width: '90%', height: 'auto' }}>
             <Table striped bordered hover responsive="md">
                 <thead>
-                    <tr>
+                    <tr style={{ textAlign: 'center' }}>
                         <th>Sl. No</th>
                         <th>Customer Name</th>
                         <th>Total credits bought</th>
@@ -70,10 +70,10 @@ const CreditsTable = ({ data }) => {
                             <td>{item.name}</td>
                             <td>{item.totalCredits}</td>
                             <td>{item.availableCredits}</td>
-                            <td>
+                            <td style={{ textAlign: 'center' }}>
                                 <Button variant="info" onClick={() => handleShowAddModal(item.id)}>Add Credits</Button>
                             </td>
-                            <td>
+                            <td style={{ textAlign: 'center' }}>
                                 <Button variant="warning" onClick={() => handleViewHistory(item.id)}>View</Button>
                             </td>
                         </tr>
