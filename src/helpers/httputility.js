@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { config } from '../config';
 
 // default
-axios.defaults.baseURL = config.IEE_BACKEND_URL;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 // content type
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
