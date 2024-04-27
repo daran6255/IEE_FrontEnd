@@ -24,3 +24,7 @@ Run the setup
 chmod +x setup.sh
 sudo -E ./setup.sh
 ```
+
+Restart pm2 service after app updates
+
+`sudo -E pm2 restart iee-frontend`
