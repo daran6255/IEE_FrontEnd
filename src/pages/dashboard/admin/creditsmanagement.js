@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, Button, Modal, Form, Spinner } from 'react-bootstrap';
 import { PiCurrencyInr } from "react-icons/pi";
+import { FcRefresh } from "react-icons/fc";
 import moment from 'moment-timezone';
 import { toast } from 'react-toastify';
 
@@ -52,6 +53,9 @@ const CreditsTable = ({ data }) => {
 
     return (
         <div style={{ width: '90%', height: 'auto' }}>
+            <div className="refresh-container" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <FcRefresh size={24} style={{ cursor: 'pointer' }} />
+            </div>
             <Table striped bordered hover responsive="md">
                 <thead>
                     <tr style={{ textAlign: 'center' }}>
