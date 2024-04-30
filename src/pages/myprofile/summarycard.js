@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
+import { PiCurrencyInr } from "react-icons/pi";
 
 
 const SummaryCard = ({ data }) => {
@@ -27,7 +28,7 @@ const SummaryCard = ({ data }) => {
                         <Col md={6} lg={3}>
                             <Card className="summary-info-card bg-custom4">
                                 <Card.Body>
-                                    <Card.Title className='card-title'>Extracted Invoice</Card.Title>
+                                    <Card.Title className='card-title'>Extracted Invoices</Card.Title>
                                     <Card.Text className='card-text'>{data.invoiceExtracted}</Card.Text>
                                 </Card.Body>
                             </Card>
@@ -43,7 +44,7 @@ const SummaryCard = ({ data }) => {
                         <Col md={6} lg={3}>
                             <Card className="summary-info-card bg-custom5">
                                 <Card.Body>
-                                    <Card.Title className='card-title'>Remaining Invoice</Card.Title>
+                                    <Card.Title className='card-title'>Remaining Invoices</Card.Title>
                                     <Card.Text className='card-text'>{data.remainingInvoices}</Card.Text>
                                 </Card.Body>
                             </Card>
@@ -52,7 +53,7 @@ const SummaryCard = ({ data }) => {
                             <Card className="summary-info-card bg-custom6">
                                 <Card.Body>
                                     <Card.Title className='card-title'>Total Amount</Card.Title>
-                                    <Card.Text className='card-text'>{data.totalAmount}</Card.Text>
+                                    <Card.Text className='card-text'><PiCurrencyInr size={20} />{data.totalAmount}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
