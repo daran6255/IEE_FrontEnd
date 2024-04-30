@@ -113,7 +113,7 @@ const CustomerDashboard = () => {
                         <Form>
                             <Form.Group controlId="formFileMultiple" className="mb-3 d-flex align-items-center">
                                 {/* <Form.Label>Select .jpg files</Form.Label> */}
-                                <Form.Control type="file" accept=".jpg" multiple className="mr-2" onChange={handleFileChange} />
+                                <Form.Control type="file" accept=".jpg,.jpeg" multiple className="mr-2" onChange={handleFileChange} />
                                 <Button className='Process-button' variant="primary" onClick={handleUpload}>Process</Button>
                             </Form.Group>
                         </Form>

@@ -71,13 +71,13 @@ const AdminDashboard = () => {
                 </Col>
                 <Col sm={12} md={10}>
                     {activeTab === 'Overview' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
-                        : <SummaryCard data={stats} />)}
+                        : <SummaryCard data={stats} onRefresh={() => dispatch(getDashboardStats())} />)}
                     {activeTab === 'Customer' && (loadingCustomer ?
                         <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
                         : <CustomerTable data={customers} />)}
                     {activeTab === 'CreditsManagement' && (loadingCustomer ?
                         <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
-                        : <CreditManagement data={customers} />)}
+                        : <CreditManagement data={customers} onRefresh={() => dispatch(getCustomers())} />)}
                 </Col>
             </Row>
         </div>

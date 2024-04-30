@@ -3,13 +3,13 @@ import { createSelector } from 'reselect';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, Button, Modal, Form, Spinner } from 'react-bootstrap';
 import { PiCurrencyInr } from "react-icons/pi";
-import { FcRefresh } from "react-icons/fc";
+import { BiRefresh } from "react-icons/bi";
 import moment from 'moment-timezone';
 import { toast } from 'react-toastify';
 
 import { getCustomerCreditHistory, addCredits } from '../../../stores/thunk';
 
-const CreditsTable = ({ data }) => {
+const CreditsTable = ({ data, onRefresh }) => {
     const dispatch = useDispatch();
 
     const creditsData = createSelector(
@@ -53,8 +53,10 @@ const CreditsTable = ({ data }) => {
 
     return (
         <div style={{ width: '90%', height: 'auto' }}>
-            <div className="refresh-container" style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <FcRefresh size={24} style={{ cursor: 'pointer' }} />
+            <div className="refresh-container mb-2" style={{ display: 'flex', justifyContent: 'flex-end' }} on>
+                <Button variant="outline-primary" onClick={onRefresh}>
+                    <BiRefresh /> Refresh
+                </Button>
             </div>
             <Table striped bordered hover responsive="md">
                 <thead>

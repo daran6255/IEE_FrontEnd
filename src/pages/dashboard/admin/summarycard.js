@@ -1,13 +1,15 @@
 import React from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
 import { PiCurrencyInr } from "react-icons/pi";
-import { FcRefresh } from "react-icons/fc";
+import { BiRefresh } from "react-icons/bi";
 
-const SummaryCard = ({ data }) => {
+const SummaryCard = ({ data, onRefresh }) => {
     return (
         <div className="container" style={{ width: '90%' }}>
-            <div className="refresh-container" style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <FcRefresh size={24} style={{ cursor: 'pointer' }} />
+            <div className="refresh-container mb-2" style={{ display: 'flex', justifyContent: 'flex-end' }} on>
+                <Button variant="outline-primary" onClick={onRefresh}>
+                    <BiRefresh /> Refresh
+                </Button>
             </div>
             <div className="summary-card-container">
                 <Card className="summary-card">
