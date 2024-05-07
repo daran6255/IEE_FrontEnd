@@ -176,9 +176,9 @@ const Home = () => {
               <h2>Trial</h2>
               <div className="price">Free</div>
               <ul className="features">
-                <li><GoIssueClosed color='green' /> 50 credits</li>
+                <li><GoIssueClosed color='green' /> 50 Credits</li>
                 <li><GoIssueClosed color='green' /> 1 User</li>
-                <li><GoIssueClosed color='green' /> 10 Invoivce</li>
+                <li><GoIssueClosed color='green' /> 10 Invoices</li>
                 <li><GoIssueClosed color='green' /> Continuous deployment</li>
                 <li><AiOutlineCloseCircle color='red' /> No API support</li>
               </ul>

@@ -146,7 +146,7 @@ const CustomerDashboard = () => {
                                     </Carousel>
                                 </Row>
                             </>
-                            : <p>No Inovices Selected</p>}
+                            : <p>No Invoices Selected</p>}
                     </Col>
 
                     <Col>
