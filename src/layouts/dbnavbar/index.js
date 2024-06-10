@@ -4,7 +4,7 @@ import { GiCoins } from "react-icons/gi";
 import { FiUser } from 'react-icons/fi';
 import { FaPowerOff } from "react-icons/fa";
 
-import logo from '../../assets/images/WVI-Logo.png';
+import logo from '../../assets/images/WVI.png';
 import './navbarStyles.css';
 
 const DashBoardNavbar = ({ userName, credits }) => {
@@ -12,10 +12,10 @@ const DashBoardNavbar = ({ userName, credits }) => {
         <Navbar bg="transparent" expand="lg">
             <Container>
                 <Navbar.Brand href="/" style={{ display: 'flex', alignItems: 'flex-end' }}>
-                    <Image className="LogoImage" src={logo} alt="Logo" style={{ marginRight: '10px' }} />
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Image className="LogoImage" src={logo} alt="Logo" style={{ width: '250px', height:'45px' }} />
+                    {/* <div style={{ display: 'flex', flexDirection: 'column' }}>
                         <span style={{ marginBottom: '15px', marginLeft: '10px' }}>WinVinaya InfoSystems</span>
-                    </div>
+                    </div> */}
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Image, Container, Button } from 'react-bootstrap';
-import logo from '../../assets/images/WVI-Logo.png';
+import logo from '../../assets/images/WVI.png';
 import './NavBarComponent.css'; // Import custom styles for NavBarComponent
 
 const NavBarComponent = () => {
@@ -9,8 +9,8 @@ const NavBarComponent = () => {
     <Navbar expand="lg" bg="transparent" className="navbar-custom">
       <Container>
         <Navbar.Brand href="/" style={{ display: 'flex', alignItems: 'center' }}>
-          <Image className="LogoImage" src={logo} alt="Logo" style={{ marginRight: '10px' }} />
-          <span style={{ color: 'black' }}>WinVinaya InfoSystems</span>
+          <Image className="LogoImage" src={logo} alt="Logo" style={{ width: '250px', height: '45px'}} />
+          {/* <span style={{ color: 'black' }}>WinVinaya InfoSystems</span> */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
