@@ -58,20 +58,40 @@ const CustomerDashboard = () => {
     4: { variant: 'danger', text: 'Failure' },
   };
 
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    setDragOver(true);
+  const getAllFileEntries = async (item, fileList = []) => {
+    return new Promise((resolve) => {
+      if (item.isFile) {
+        item.file((file) => {
+          if (file.type.startsWith('image/')) {
+            fileList.push(file);
+          }
+          resolve(fileList);
+        });
+      } else if (item.isDirectory) {
+        const dirReader = item.createReader();
+        dirReader.readEntries(async (entries) => {
+          for (const entry of entries) {
+            await getAllFileEntries(entry, fileList);
+          }
+          resolve(fileList);
+        });
+      }
+    });
   };
 
-  const handleDragLeave = () => {
-    setDragOver(false);
-  };
-
-  const handleDrop = (e) => {
+  const handleDrop = async (e) => {
     e.preventDefault();
     setDragOver(false);
-    const file = e.dataTransfer.files[0];
-    console.log('File dropped:', file);
+    const items = e.dataTransfer.items;
+    let files = [];
+    for (const item of items) {
+      const entry = item.webkitGetAsEntry();
+      if (entry) {
+        files = await getAllFileEntries(entry, files);
+      }
+    }
+    console.log(files);
+    dispatch(uploadInvoice(files));
   };
 
   const handleClick = () => {
@@ -98,8 +118,11 @@ const CustomerDashboard = () => {
             <Card
               className={`mb-4 ${dragOver ? 'border-primary' : 'border-dashed'}`}
               style={{ border: '2px dashed #ccc', width: '100%' }}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragOver(true);
+              }}
+              onDragLeave={() => setDragOver(false)}
               onDrop={handleDrop}
               onClick={handleClick}
             >
@@ -114,6 +137,24 @@ const CustomerDashboard = () => {
                   style={{ display: 'none' }}
                   onChange={handleFileUpload}
                 />
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    zIndex: 10,
+                    display: dragOver ? 'flex' : 'none',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '1.5rem',
+                  }}
+                >
+                  Drop here to upload
+                </div>
                 <ProgressBar now={fileUploadingProgress} label={`${Math.round(fileUploadingProgress)}%`} />
               </Card.Body>
             </Card>
