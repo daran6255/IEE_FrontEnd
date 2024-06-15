@@ -40,11 +40,32 @@ export const getDashboardStats = () =>
 export const addCredits = (data) =>
     http.post('/add_credits', data);
 
-export const processInvoice = (data) =>
-    http.post('/process_invoice', data, { headers: { 'Content-Type': 'multipart/form-data' } });
+export const initUpload = (data) =>
+    http.post('/init_upload', data);
+
+export const uploadInvoice = (data, onUploadProgress) =>
+    http.post('/upload_invoice', data, { headers: { 'Content-Type': 'multipart/form-data' } }, onUploadProgress);
+
+export const getInvoiceRequests = () =>
+    http.get('/invoice_requests');
+
+export const getAllInvoiceData = (requestId) =>
+    http.get('/invoice_requests/' + requestId + '/data');
+
+export const getInvoiceData = (requestId, invoiceName) =>
+    http.get('/invoice_requests/' + requestId + '/data/' + invoiceName);
+
+export const updateInvoiceData = (requestId, data) =>
+    http.put('/invoice_requests/' + requestId + '/data', data);
+
+export const getInvoiceFile = (requestId, invoiceName) =>
+    http.get('/invoice_requests/file/' + requestId + '/' + invoiceName, { responseType: 'blob' });
 
 export const downloadExcel = (requestId) =>
     http.get('/download_excel/' + requestId, { responseType: 'blob' });
 
 export const downloadJson = (requestId) =>
     http.get('/download_json/' + requestId, { responseType: 'blob' });
+
+export const deleteInvoiceRequests = (requestId) =>
+    http.delete('/invoice_requests/' + requestId);

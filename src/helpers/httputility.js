@@ -61,8 +61,8 @@ class HttpUtility {
         return response;
     };
 
-    post = (url, data, axiosConfig) => {
-        return axios.post(url, data, { ...axiosConfig });
+    post = (url, data, axiosConfig, onUploadProgress = null) => {
+        return axios.post(url, data, { ...axiosConfig, onUploadProgress: onUploadProgress });
     };
 
     update = (url, data) => {

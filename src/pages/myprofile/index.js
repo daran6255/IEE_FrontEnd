@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createSelector } from 'reselect';
-import { Row, Col, Nav, Spinner } from 'react-bootstrap';
+import { Row, Col, Nav } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -13,6 +13,7 @@ import SummaryCard from './summarycard';
 import CreditsHistory from './creditshistory';
 
 import { getCustomerData, getCreditHistory } from '../../stores/thunk';
+import CenteredSpinner from '../../components/common/centeredSpinner';
 
 const UserProfile = () => {
     const dispatch = useDispatch();
@@ -111,10 +112,10 @@ const UserProfile = () => {
                     <Col sm={12} md={10}>
                         {activeTab === 'profile' && <ProfileCard profile={user} onPasswordChange={onPasswordChange} />}
                         {activeTab === 'summary' && (loadingData ?
-                            <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /></div>
+                            <CenteredSpinner />
                             : <SummaryCard data={userData} />)}
                         {activeTab === 'creditsHistory' && (loadingCredits ?
-                            <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /></div>
+                            <CenteredSpinner />
                             : <CreditsHistory credits={creditsHistory} />)}
                     </Col>
                 </Row>

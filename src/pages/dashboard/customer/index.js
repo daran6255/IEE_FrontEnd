@@ -1,131 +1,62 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Row, Col, Card, Table, Button, ProgressBar } from 'react-bootstrap';
+import { Container, Row, Col, Card, Table, Button, ProgressBar, Spinner, Alert, Badge, Modal } from 'react-bootstrap';
 import { createSelector } from 'reselect'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faFileExcel, faFileCode } from '@fortawesome/free-solid-svg-icons';
 import { IoTrashSharp } from 'react-icons/io5';
+import { FaExclamationTriangle } from 'react-icons/fa';
 
-import DashBoardNavbar from '../../../layouts/dbnavbar';
 import upload from '../../../assets/images/upload.jpg';
-
-// import {
-//   initUpload,
-//   uploadInvoice
-// } from '../../../helpers/backend_helper';
+import {
+  uploadInvoice,
+  getInvoiceRequests,
+  downloadJson,
+  downloadExcel,
+  deleteRequests,
+} from '../../../stores/thunk';
 
 const CustomerDashboard = () => {
 
   const dispatch = useDispatch();
 
-  const entitiesData = createSelector(
-      (state) => state.Invoice,
-      (state) => ({
-          requestId: state.requestId,
-          entities: state.entities,
-          loading: state.loading,
-      })
+  const requestData = createSelector(
+    (state) => state.Invoice,
+    (state) => ({
+      requests: state.requests,
+      loadingRequest: state.loadingRequest,
+      fileUploadingProgress: state.fileUploadingProgress,
+      error: state.error,
+    })
   );
 
   const {
-      requestId,
-      entities, loading } = useSelector(entitiesData);
+    requests, loadingRequest, fileUploadingProgress, error } = useSelector(requestData);
 
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const [message, setMessage] = useState('');
-  const chunkSize = 5;
-  const maxRetries = 3;
+  useEffect(() => {
+    dispatch(getInvoiceRequests());
+  }, [dispatch]);
 
-  const handleSelect = (selectedIndex, e) => {
-    setSelectedIndex(selectedIndex);
-};
+  const handleFileUpload = async (event) => {
+    const files = Array.from(event.target.files);
+    const images = files.filter(file => file.type.startsWith('image/'));
 
-const initializeUploadSession = async (totalImages) => {
-    let currRequestId = null;
+    dispatch(uploadInvoice(images));
+  };
 
-    // try {
-    //     const response = await initUpload({ total_images: totalImages });
-    //     currRequestId = response.request_id;
-    // } catch (error) {
-    //     setMessage('Failed to initialize upload session');
-    // }
-
-    return currRequestId;
-};
-
-const uploadImages = async (images, requestId) => {
-  let uploadedCount = 0;
-  const totalImages = images.length;
-  
-  for (let i = 0; i < totalImages; i += chunkSize) {
-      const chunk = images.slice(i, i + chunkSize);
-      let success = false;
-      let attempts = 0;
-
-      while (!success && attempts < maxRetries) {
-          try {
-              const formData = new FormData();
-              formData.append('request_id', requestId);
-              chunk.forEach(file => {
-                  const fileName = file.name;
-                  const newFile = new File([file], fileName, { type: file.type });
-                  formData.append('images', newFile);
-              });
-
-              // await uploadInvoice(formData,
-              //     // eslint-disable-next-line no-loop-func
-              //     (progressEvent) => {
-              //         const total = progressEvent.total;
-              //         const current = progressEvent.loaded;
-              //         setProgress((uploadedCount + current / total) / totalImages * 100);
-              //     }
-              // );
-
-              uploadedCount += chunk.length;
-              success = true;
-          } catch (error) {
-              attempts++;
-              if (attempts === maxRetries) {
-                  setProgress(0);
-                  setMessage('Failed to upload some images after multiple attempts');
-                  return;
-              }
-          }
-      }
-  }
-
-  setMessage('Upload successful');
-};
-
-const handleFileUpload = async (event) => {
-  // const formData = new FormData();
-
-  // for (let i = 0; i < selectedFiles.length; i++) {
-  //     formData.append('files[]', selectedFiles[i], selectedFiles[i].name);
-  // }
-
-  // dispatch(processInvoice(formData));
-
-  let uploadedCount = 0;
-  const files = Array.from(event.target.files);
-  const imageFiles = files.filter(file => file.type.startsWith('image/'));
-  const totalImages = imageFiles.length;
-  console.log(totalImages);
-
-  const currRequestId = await initializeUploadSession(totalImages);
-  if (!currRequestId) {
-      return
-  }
-
-  await uploadImages(imageFiles, currRequestId);
-};
-
-const isEntitiesAvailable = selectedIndex < entities.length;
   const [dragOver, setDragOver] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+  const [requestToDelete, setRequestToDelete] = useState(null);
   const fileInputRef = useRef(null);
+  const statusMap = {
+    0: { variant: 'secondary', text: 'Uploading' },
+    1: { variant: 'secondary', text: 'Uploaded' },
+    2: { variant: 'warning', text: 'Processing' },
+    3: { variant: 'success', text: 'Success' },
+    4: { variant: 'danger', text: 'Failure' },
+  };
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -141,26 +72,25 @@ const isEntitiesAvailable = selectedIndex < entities.length;
     setDragOver(false);
     const file = e.dataTransfer.files[0];
     console.log('File dropped:', file);
-    // Implement your file handling logic here
   };
 
   const handleClick = () => {
     fileInputRef.current.click();
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    console.log('File selected:', file);
-    // Implement your file handling logic here
-  };
+  const handleShowDelete = (requestId) => {
+    setRequestToDelete(requestId);
+    setShowDelete(true);
+  }
 
   const handleDelete = () => {
-    // Implement delete logic here
-    console.log('Item deleted');
+    if (!requestToDelete) return
+    dispatch(deleteRequests(requestToDelete));
+    setShowDelete(false);
   };
 
   return (
-    <>
+    <Fragment>
       {/* <DashBoardNavbar /> */}
       <Container>
         <Row className="mt-4 justify-content-center">
@@ -174,7 +104,7 @@ const isEntitiesAvailable = selectedIndex < entities.length;
               onClick={handleClick}
             >
               <Card.Body className="text-center">
-                <img src={upload} alt="Upload" style={{ width: '50%', margin: '0 auto', display: 'block' }}/>
+                <img src={upload} alt="Upload" style={{ width: '50%', margin: '0 auto', display: 'block' }} />
                 <p className="mt-2">Drag and drop a file here or click to browse</p>
                 <input
                   type="file"
@@ -184,66 +114,113 @@ const isEntitiesAvailable = selectedIndex < entities.length;
                   style={{ display: 'none' }}
                   onChange={handleFileUpload}
                 />
-                <ProgressBar now={progress} label={`${Math.round(progress)}%`} />
-                {message && <div>{message}</div>}
+                <ProgressBar now={fileUploadingProgress} label={`${Math.round(fileUploadingProgress)}%`} />
               </Card.Body>
             </Card>
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col xs lg="6">
+            {fileUploadingProgress === 100 ? <Alert variant="success" dismissible >
+              <p>
+                Your invoices are being processed. You will be notified via email once complete.
+              </p>
+            </Alert> : null}
+            {error ? <Alert variant="danger" dismissible>
+              <p>
+                An error occurred. Kindly attempt re-uploading after a short while.
+              </p>
+            </Alert> : null}
           </Col>
         </Row>
         <Row className="mt-4">
           <Col>
             <Card>
+              <Card.Header>
+                Your Request History
+                <Button variant="primary" size="sm" style={{ float: 'right' }} onClick={() => dispatch(getInvoiceRequests())}>
+                  Refresh
+                </Button>
+              </Card.Header>
               <Card.Body>
-                <Card.Title>Process History</Card.Title>
                 <div style={{ overflowX: 'auto', textAlign: 'center' }}>
-                  <Table striped bordered hover>
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th># Pages</th>
-                        <th>Status</th>
-                        <th>Show Results</th>
-                        <th>Download</th>
-                        <th>Delete</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>2024-06-05</td>
-                        <td>10</td>
-                        <td>Processed</td>
-                        <td>
-                          <button style={{border: 'none'}}>
-                            <FontAwesomeIcon style={{ color: 'blue' }} icon={faEye}/>
-                          </button>
-                        </td>
-                        {/* <td><Button variant="outline-info"><FontAwesomeIcon icon={faEye} /> Show</Button></td> */}
-                        <td>
-                          <div className="d-flex justify-content-center">
-                            <Button variant="success" className="me-2">
-                              <FontAwesomeIcon icon={faFileExcel} /> Excel
-                            </Button>
-                            <Button variant="warning">
-                              <FontAwesomeIcon icon={faFileCode} /> JSON
-                            </Button>
-                          </div>
-                        </td>
-                        <td>
-                          <button style={{border: 'none'}} onClick={handleDelete}>
-                            <IoTrashSharp size={20} style={{ color: 'red' }} />
-                          </button>
-                        </td>
-                      </tr>
-                      {/* More rows can be added here */}
-                    </tbody>
-                  </Table>
+                  {loadingRequest ? <Spinner animation="border" /> :
+                    (requests && requests.length > 0 ? <Table striped bordered hover>
+                      < thead >
+                        <tr>
+                          <th>Sl.</th>
+                          <th>Date</th>
+                          <th># Pages</th>
+                          <th>Status</th>
+                          <th>Show Results</th>
+                          <th>Download</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {requests.map((request, index) => {
+                          const { variant, text } = statusMap[request.status];
+                          return (
+                            <tr key={index}>
+                              <td>{index + 1}</td>
+                              <td>{request.createdAt}</td>
+                              <td>{request.totalImages}</td>
+                              <td><Badge bg={variant}>{text}</Badge></td>
+                              <td>
+                                <Link to={`/result-view/${request.id}`}>
+                                  <Button style={{ backgroundColor: 'transparent', border: 'none' }} disabled={request.status !== 3}>
+                                    <FontAwesomeIcon style={{ color: 'blue' }} icon={faEye} />
+                                  </Button>
+                                </Link>
+                              </td>
+                              <td>
+                                <div className="d-flex justify-content-center">
+                                  <Button variant="success" className="me-2" disabled={request.status !== 3} onClick={() => dispatch(downloadExcel(request.id))}>
+                                    <FontAwesomeIcon icon={faFileExcel} /> Excel
+                                  </Button>
+                                  <Button variant="warning" disabled={request.status !== 3} onClick={() => dispatch(downloadJson(request.id))}>
+                                    <FontAwesomeIcon icon={faFileCode} /> JSON
+                                  </Button>
+                                </div>
+                              </td>
+                              <td>
+                                <Button style={{ backgroundColor: 'transparent', border: 'none' }} onClick={() => handleShowDelete(request.id)} disabled={request.status !== 3 && request.status !== 4}>
+                                  <IoTrashSharp size={20} style={{ color: 'red' }} />
+                                </Button>
+                              </td>
+                            </tr>)
+                        })}
+                      </tbody>
+                    </Table> : <p>No requests done. Please upload your invoices.</p>)}
                 </div>
+                <Alert variant="info" className="mt-1">
+                  <small>
+                    <strong>Tip:</strong> Invoice data will be automatically deleted in 5 days after processing. However, you can choose to manually delete at any time.
+                  </small>
+                </Alert>
               </Card.Body>
             </Card>
           </Col>
-        </Row>
-      </Container>
-    </>
+        </Row >
+      </Container >
+      <Modal show={showDelete} onHide={() => setShowDelete(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <FaExclamationTriangle color="red" className="mb-2" />
+          <strong>Warning:</strong> Once deleted, the data cannot be recovered. Please ensure you have downloaded any necessary information before proceeding.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDelete(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Confirm Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Fragment >
   );
 }
 

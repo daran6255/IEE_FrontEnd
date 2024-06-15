@@ -9,12 +9,13 @@ import Logout from "../pages/logout";
 import BuyCredits from "../pages/buycredits";
 import UserProfile from "../pages/myprofile";
 import VerifyEmail from "../pages/emailverify";
-import Results from "../pages/resultsview";
+import ResultView from "../pages/resultview";
 import PageNotFound from '../pages/others/errors/PageNotFound';
 
 const authProtectedRoutes = [
     { path: '/dashboard', component: <DashboardPage />, roles: ['admin', 'customer'] },
     { path: '/my-profile', component: <UserProfile />, roles: ['customer'] },
+    { path: '/result-view/:requestId', component: <ResultView />, roles: ['customer'] },
 
 
     // this route must be at the end
@@ -31,7 +32,6 @@ const publicRoutes = [
     { path: '/buy-credits', component: <BuyCredits />, roles: ['customer'] },
     // Other routes
     { path: '/page-not-found', component: <PageNotFound /> },
-    { path: '/results', component: <Results /> },
     // { path: '/dashboard', component: <DashboardPage />, roles: ['admin', 'customer'] },
 ]
 

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
-import { Row, Col, Nav, Spinner } from 'react-bootstrap';
+import { Row, Col, Nav } from 'react-bootstrap';
 
 import { getCustomers, getDashboardStats } from '../../../stores/thunk';
+import CenteredSpinner from '../../../components/common/centeredSpinner';
 
 import SummaryCard from './summarycard';
 import CustomerTable from './customertable';
 import CreditManagement from './creditsmanagement';
+
 
 const AdminDashboard = () => {
     const dispatch = useDispatch();
@@ -70,13 +72,13 @@ const AdminDashboard = () => {
                     </Nav>
                 </Col>
                 <Col sm={12} md={10}>
-                    {activeTab === 'Overview' && (loadingStats ? <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                    {activeTab === 'Overview' && (loadingStats ? <CenteredSpinner />
                         : <SummaryCard data={stats} onRefresh={() => dispatch(getDashboardStats())} />)}
                     {activeTab === 'Customer' && (loadingCustomer ?
-                        <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                        <CenteredSpinner />
                         : <CustomerTable data={customers} />)}
                     {activeTab === 'CreditsManagement' && (loadingCustomer ?
-                        <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}><Spinner animation="border" /> </div>
+                        <CenteredSpinner />
                         : <CreditManagement data={customers} onRefresh={() => dispatch(getCustomers())} />)}
                 </Col>
             </Row>
