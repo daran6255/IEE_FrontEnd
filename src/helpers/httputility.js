@@ -1,19 +1,16 @@
 import axios from 'axios';
 
 // default
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+// axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 // content type
 axios.defaults.headers.post['Content-Type'] = 'application/json';
-
-const userAuth = sessionStorage.getItem('userAuth');
-const token = JSON.parse(userAuth) ? JSON.parse(userAuth).accessToken : null;
-if (token) axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+axios.defaults.withCredentials = true;
 
 axios.interceptors.response.use(
     function (response) {
         return response.data ? response.data : response;
     },
-    function (error) {
+    async function (error) {
         let message;
         switch (error.response.status) {
             case 500:
@@ -21,8 +18,7 @@ axios.interceptors.response.use(
                 break;
             case 401:
                 message = 'Invalid credentials';
-                sessionStorage.removeItem('userAuth');
-                window.location.href = '/logout';
+                window.location.href = '/login';
                 break;
             case 404:
                 message =
@@ -34,10 +30,6 @@ axios.interceptors.response.use(
         return Promise.reject(message);
     }
 );
-
-const setAuthorization = (newToken) => {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + newToken;
-};
 
 class HttpUtility {
     get = (url, params) => {
@@ -81,13 +73,4 @@ class HttpUtility {
     };
 }
 
-const getLoggedinUser = () => {
-    const user = sessionStorage.getItem('userAuth');
-    if (!user) {
-        return null;
-    } else {
-        return JSON.parse(user);
-    }
-};
-
-export { HttpUtility, setAuthorization, getLoggedinUser };
+export { HttpUtility };

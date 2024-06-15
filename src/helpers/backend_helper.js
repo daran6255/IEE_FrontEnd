@@ -2,19 +2,15 @@ import { HttpUtility } from './httputility';
 
 const http = new HttpUtility();
 
-export const getLoggedInUser = () => {
-    const user = localStorage.getItem('user');
-    if (user) return JSON.parse(user);
-    return null;
-};
-
-export const isUserAuthenticated = () => {
-    return getLoggedInUser() !== null;
-};
-
 // APIs
 export const loginUser = (data) =>
     http.post('/login', data);
+
+export const loginoutUser = () =>
+    http.post('/logout');
+
+export const verifyToken = () =>
+    http.get('/verify-token');
 
 export const registerUser = (data) =>
     http.post('/register', data);

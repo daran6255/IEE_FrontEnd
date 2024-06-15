@@ -4,7 +4,8 @@ import {
     loginUser as loginUserApi,
     registerUser as registerUserApi,
     verifyUser as verifyUserApi,
-    updatePassword as updatePasswordApi
+    updatePassword as updatePasswordApi,
+    loginoutUser as loginoutUserApi,
 } from '../../helpers/backend_helper';
 
 import {
@@ -32,7 +33,6 @@ export const loginUser = (user, history) => async (dispatch) => {
         if (result) {
             if (response.status === 'success') {
                 dispatch(loginSuccess(result));
-                sessionStorage.setItem('userAuth', JSON.stringify(result));
                 history('/dashboard');
                 return;
             }
@@ -149,7 +149,7 @@ export const updateUser = (user) => async (dispatch) => {
 
 export const logoutUser = () => async (dispatch) => {
     try {
-        sessionStorage.removeItem('userAuth');
+        await loginoutUserApi();
         dispatch(logoutSuccess());
     } catch (error) {
         dispatch(apiError(error));

@@ -149,6 +149,7 @@ const CustomerDashboard = () => {
                       < thead >
                         <tr>
                           <th>Sl.</th>
+                          <th>Request #</th>
                           <th>Date</th>
                           <th># Pages</th>
                           <th>Status</th>
@@ -163,6 +164,7 @@ const CustomerDashboard = () => {
                           return (
                             <tr key={index}>
                               <td>{index + 1}</td>
+                              <td>{request.id}</td>
                               <td>{request.createdAt}</td>
                               <td>{request.totalImages}</td>
                               <td><Badge bg={variant}>{text}</Badge></td>
