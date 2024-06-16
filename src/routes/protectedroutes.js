@@ -38,7 +38,7 @@ const AuthProtected = ({ children, roles }) => {
         return <CenteredSpinner />;
     }
 
-    if (roles && !roles.includes(userProfile.role)) {
+    if (roles && userProfile && !roles.includes(userProfile.role)) {
         return <Navigate to="/page-not-found" />;
     }
 

@@ -90,7 +90,7 @@ const CustomerDashboard = () => {
         files = await getAllFileEntries(entry, files);
       }
     }
-    console.log(files);
+
     dispatch(uploadInvoice(files));
   };
 
