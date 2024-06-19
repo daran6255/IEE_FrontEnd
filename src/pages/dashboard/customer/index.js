@@ -42,10 +42,9 @@ const CustomerDashboard = () => {
   const handleFileUpload = async (event) => {
     const files = Array.from(event.target.files);
     const images = files.filter(file => file.type.startsWith('image/'));
-
     dispatch(uploadInvoice(images));
   };
-
+  
   const [dragOver, setDragOver] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [requestToDelete, setRequestToDelete] = useState(null);
@@ -90,8 +89,10 @@ const CustomerDashboard = () => {
         files = await getAllFileEntries(entry, files);
       }
     }
-
     dispatch(uploadInvoice(files));
+  };
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
   };
 
   const handleClick = () => {
@@ -128,7 +129,7 @@ const CustomerDashboard = () => {
             >
               <Card.Body className="text-center">
                 <img src={upload} alt="Upload" style={{ width: '50%', margin: '0 auto', display: 'block' }} />
-                <p className="mt-2">Drag and drop a file here or click to browse</p>
+                <p className="mt-2">Drag and drop a Folder here or click to browse</p>
                 <input
                   type="file"
                   webkitdirectory="true"
@@ -153,11 +154,27 @@ const CustomerDashboard = () => {
                     fontSize: '1.5rem',
                   }}
                 >
-                  Drop here to upload
+                  Drop here to upload folder
                 </div>
                 <ProgressBar now={fileUploadingProgress} label={`${Math.round(fileUploadingProgress)}%`} />
               </Card.Body>
             </Card>
+            <div className="text-center">
+              <p>click button to upload files
+                <Button variant="warning" style={{ marginLeft: "5px" }} onClick={handleButtonClick}>
+                  Upload files
+                </Button>
+              </p>
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                style={{ display: 'none' }}
+                onChange={handleFileUpload}
+                multiple
+              />
+            </div>
+            
           </Col>
         </Row>
         <Row className="justify-content-md-center">
